@@ -1,5 +1,7 @@
-## Viikon 1. Laskarit
+## Ohjelmistotekniikka, harjoitustyö
 
-**Jotain tekstiä**
+**Viikko 1**
+
 [gitlog.txt](https://github.com/StrappedGlint13/ot-harjoitustyo/blob/master/laskarit/viikko1/gitlog.txt)
+
 [komentorivi.txt](https://github.com/StrappedGlint13/ot-harjoitustyo/blob/master/laskarit/viikko1/komentorivi.txt)
