@@ -30,13 +30,5 @@ public class Maksukortti {
     public String toString() {
         return "Kortilla on rahaa "+saldo+ " euroa";
     } 
-    public boolean onnistuukoOstaminen () {
-        boolean onnistuiko = true;
-        
-        if (onnistuiko == true) {
-            return true;
-        }
-        return false;
-    }
-    
+ 
 }

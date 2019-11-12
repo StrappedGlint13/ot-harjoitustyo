@@ -56,32 +56,8 @@ public class Kassapaate {
             kortti.lataaRahaa(summa);
             this.kassassaRahaa += summa;
         } else {
-            return;
+            return;     
         }
-    }
-
-    public int getKassassaRahaa() {
-        return kassassaRahaa;
-    }
-
-    public void setKassassaRahaa(int kassassaRahaa) {
-        this.kassassaRahaa = kassassaRahaa;
-    }
-
-    public int getEdulliset() {
-        return edulliset;
-    }
-
-    public void setEdulliset(int edulliset) {
-        this.edulliset = edulliset;
-    }
-
-    public int getMaukkaat() {
-        return maukkaat;
-    }
-
-    public void setMaukkaat(int maukkaat) {
-        this.maukkaat = maukkaat;
     }
 
     public int kassassaRahaa() {
