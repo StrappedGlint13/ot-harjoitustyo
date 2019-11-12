@@ -14,8 +14,6 @@ Aluksi sovellusta on tarkoitus käyttää pelkästään normaalin käyttäjän t
 
 Sovellukseen tulee kolme päänäkymää, ja lisäksi mahdollisuus muodostaa graafisia kaavioita erilaisia filtteröintejä käyttäen.
 
-![Alt text](relative/path/to/WhatsApp Image 2019-11-12 at 22.33.02.jpng?raw=true "Title")
-
 Sovelluksen aloitusnäkymä on kirjautumisnäkymä, jossa on vaihtoehtona joko luoda uusi käyttäjä tai siirtyä suoraan opiskelija-alennuslaskuriin.
 
 **Perusversion toiminnallisuudet**
@@ -32,15 +30,19 @@ Sovelluksen aloitusnäkymä on kirjautumisnäkymä, jossa on vaihtoehtona joko l
 *Kirjautumisen jälkeen*
 
 * Käyttäjä voi lisätä ostamiaan tuotteita järjestelmään
-* Järjestelmä muistaa käyttäjän lisäämät tuotteet, mikäli
+* Käyttäjä voi lisätä tuotteita, joissa on hinta, yritys, alennusprosentti
+* Alennus- ja kokonaissummat tulevat näkyviin 
 * Käyttäjä voi käyttää erilaisia filttereitä, tarkastellakseen, mistä hän on saanut opiskelija-alennusta
 * Käyttäjä voi kirjautua ulos järjestelmästä
 
 **Jatkokehitysideoita**
 
 * Sovelluksesta on saatavilla erilaisia graafisia näkymiä erilaisia filttereitä hyödyntämällä
-* Tuotteiden poisto järjestelmästä*
-* Järjestelmän muistiominaisuuksien kehittäminen*
+* Tuotteiden poisto järjestelmästä
+* Filttereiden ja kategorioiden lisäykset 
+* Järjestelmän muistiominaisuuksien kehittäminen
 * Tietokantojen hyödyntäminen mm. tuotteiden lisäyksessä
-* Opiskelija-alennuksen vertaus muiden käyttäjien kesken*
+* Opiskelija-alennuksen vertaus muiden käyttäjien kesken
+* Mobiilisovellus (ajan ja laajuuden salliessa) 
+
 
