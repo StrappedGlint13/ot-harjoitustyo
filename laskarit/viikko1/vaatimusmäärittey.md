@@ -14,6 +14,6 @@ Aluksi sovellusta on tarkoitus käyttää pelkästään normaalin käyttäjän t
 
 Sovellukseen tulee kolme päänäkymää, ja lisäksi mahdollisuus muodostaa graafisia kaavioita erilaisia filtteröintejä käyttäen.
 
-![](WhatsApp Image 2019-11-12 at 22.33.02.jpeg)
+![](WhatsApp Image 2019-11-12 at 22.33.02.jpeg.png)
 
 
