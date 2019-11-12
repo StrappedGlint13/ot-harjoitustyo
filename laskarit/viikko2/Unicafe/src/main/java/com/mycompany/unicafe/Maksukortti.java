@@ -3,21 +3,21 @@ package com.mycompany.unicafe;
 
 public class Maksukortti {
  
-    private int saldo;
+    private double saldo;
  
-    public Maksukortti(int saldo) {
+    public Maksukortti(double saldo) {
         this.saldo = saldo;
     }
  
-    public int saldo() {
+    public double saldo() {
         return saldo;
     }
  
-    public void lataaRahaa(int lisays) {
+    public void lataaRahaa(double lisays) {
         this.saldo += lisays;
     }
  
-    public boolean otaRahaa(int maara) {
+    public boolean otaRahaa(double maara) {
         if (this.saldo < maara) {
             return false;
         }
@@ -28,9 +28,15 @@ public class Maksukortti {
 
     @Override
     public String toString() {
-        int euroa = saldo/100;
-        int senttia = saldo%100;
-        return "saldo: "+euroa+"."+senttia;
+        return "Kortilla on rahaa "+saldo+ " euroa";
     } 
+    public boolean onnistuukoOstaminen () {
+        boolean onnistuiko = true;
+        
+        if (onnistuiko == true) {
+            return true;
+        }
+        return false;
+    }
     
 }

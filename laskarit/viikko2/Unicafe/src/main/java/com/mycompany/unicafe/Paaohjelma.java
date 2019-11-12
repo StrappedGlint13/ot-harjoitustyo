@@ -8,7 +8,11 @@ public class Paaohjelma {
         
         unicafeExactum.syoEdullisesti(kortti);
         
-        System.out.println( unicafeExactum.edullisiaLounaitaMyyty() );
+        System.out.println(unicafeExactum.edullisiaLounaitaMyyty() );
+        System.out.println(unicafeExactum);
+        
+        unicafeExactum.syoEdullisesti(kortti);
+        
         System.out.println(kortti);
     }
 }

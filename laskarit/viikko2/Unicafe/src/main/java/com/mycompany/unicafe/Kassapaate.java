@@ -60,6 +60,30 @@ public class Kassapaate {
         }
     }
 
+    public int getKassassaRahaa() {
+        return kassassaRahaa;
+    }
+
+    public void setKassassaRahaa(int kassassaRahaa) {
+        this.kassassaRahaa = kassassaRahaa;
+    }
+
+    public int getEdulliset() {
+        return edulliset;
+    }
+
+    public void setEdulliset(int edulliset) {
+        this.edulliset = edulliset;
+    }
+
+    public int getMaukkaat() {
+        return maukkaat;
+    }
+
+    public void setMaukkaat(int maukkaat) {
+        this.maukkaat = maukkaat;
+    }
+
     public int kassassaRahaa() {
         return kassassaRahaa;
     }
@@ -71,4 +95,8 @@ public class Kassapaate {
     public int edullisiaLounaitaMyyty() {
         return edulliset;
     }
+    @Override
+    public String toString() {
+        return "kassapäätteellä on rahaa " + kassassaRahaa + " euroa";
+    } 
 }

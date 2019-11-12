@@ -10,7 +10,7 @@ public class MaksukorttiTest {
 
     @Before
     public void setUp() {
-        kortti = new Maksukortti(10);
+        kortti = new Maksukortti(10.0);
     }
 
     @Test
@@ -24,19 +24,7 @@ public class MaksukorttiTest {
 
     @Test
     public void rahanLataaminenKasvattaaSaldoaOikein() {
-        kortti.lataaRahaa(2);
+        kortti.lataaRahaa(2.0);
         assertEquals("Kortilla on rahaa 12.0 euroa", kortti.toString());
-    }
-    @Test
-    public void ottaminenToimiiOikein() {
-    kortti.lataaRahaa(300);
-        Kassapaate kassapaate = new Kassapaate();
-        int kortillaRahaa = kortti.saldo();
-        int edullisiaMyyty = kassapaate.edullisiaLounaitaMyyty();
-        boolean ostosTapahtui = kassapaate.syoEdullisesti(kortti);
-        
-        assertTrue(ostosTapahtui);
-        assertTrue(kortillaRahaa == 0);  
-        assertTrue(edullisiaMyyty == 1);
     }
 }
