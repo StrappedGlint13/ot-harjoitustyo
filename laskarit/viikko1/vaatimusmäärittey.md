@@ -4,14 +4,16 @@
 
 **Sovelluksen tarkoitus**
 
-Sovelluksen avulla käyttäjien on mahdollista seurata henkilökohtaista opiskelija-alennus kertymäänsä. Usempi rekisteröitynyt käyttäjä voi käyttää sovellusta yhtäaikaa. Sovellus on silti tarkoitettu henkilökohta$
+Sovelluksen avulla käyttäjien on mahdollista seurata henkilökohtaista opiskelija-alennus kertymäänsä. Usempi rekisteröitynyt käyttäjä voi käyttää sovellusta yhtäaikaa. Sovellus on silti tarkoitettu henkilökoiseen opiskelija-alennuksen seurantaan. 
 
-***Käyttäjät***
+**Käyttäjät**
 
-***Viikko 1***
+Aluksi sovellusta on tarkoitus käyttää pelkästään normaalin käyttäjän tapaan. Myöhempää mahdollista kulutuskäyttäytymistutkimusta tai suuremman tiedon keruun johdosta, sovellukselle voidaan määritellä admin-käyttäjiä. 
 
-[gitlog.txt](https://github.com/StrappedGlint13/ot-harjoitustyo/blob/master/laskari$
+**Käyttöliittymäluonnos**
 
-[komentorivi.txt](https://github.com/StrappedGlint13/ot-harjoitustyo/blob/master/la$
+Sovellukseen tulee kolme päänäkymää, ja lisäksi mahdollisuus muodostaa graafisia kaavioita erilaisia filtteröintejä käyttäen.
+
+![](WhatsApp Image 2019-11-12 at 22.33.02.jpeg)
 
 
