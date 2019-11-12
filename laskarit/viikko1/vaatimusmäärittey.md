@@ -14,8 +14,6 @@ Aluksi sovellusta on tarkoitus käyttää pelkästään normaalin käyttäjän t
 
 Sovellukseen tulee kolme päänäkymää, ja lisäksi mahdollisuus muodostaa graafisia kaavioita erilaisia filtteröintejä käyttäen.
 
-![Alt text](relative/path/to/WhatsApp Image 2019-11-12 at 22.33.02.jpng?raw=true "Title")
-
 Sovelluksen aloitusnäkymä on kirjautumisnäkymä, jossa on vaihtoehtona joko luoda uusi käyttäjä tai siirtyä suoraan opiskelija-alennuslaskuriin.
 
 **Perusversion toiminnallisuudet**
