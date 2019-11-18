@@ -8,7 +8,7 @@ public class Paaohjelma {
          int vuosi = 20;
          double t= 500;
          for (int j = 0; j < 20; j++) {
-            t = 0.9*t+35;
+            i^
              //System.out.println(t);
         }
          System.out.println(t);
