@@ -1,0 +1,20 @@
+  GNU nano 2.9.3                                                                                   Vaatimusmäärittely                                                                                              
+
+## Vaatimusmäärittely
+
+**Sovelluksen tarkoitus**
+
+Sov
+elluksen avulla käyttäjien on mahdollista seurata henkilökohtaista opiskelija-alennus kertymäänsä. Usempi rekisteröitynyt käyttäjä voi käyttää sovellusta yhtäaikaa. Sovellus on silti tarkoitettu henkilökoiseen opiskelija-alennuksen seurantaan. 
+
+**Käyttäjät**
+
+Aluksi sovellusta on tarkoitus käyttää pelkästään normaalin käyttäjän tapaan. Myöhempää mahdollista kulutuskäyttäytymistutkimusta tai suuremman tiedon keruun johdosta, sovellukselle voidaan määritellä admin-käyttäjiä. 
+
+**Käyttöliittymäluonnos**
+
+Sovelluksessa tulee olemaan 3 päänäkymää, ja mahdollisuus muodostaa graafisia kaavioita erilaisilla filtteröintiominaisuuksilla. 
+
+
+
+
