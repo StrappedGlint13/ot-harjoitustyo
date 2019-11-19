@@ -10,6 +10,7 @@ import java.util.logging.Logger;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -62,8 +63,6 @@ public class Main extends Application {
         asettelu.add(putPassword, 3, 5);
         asettelu.add(loginButton, 3, 7);
         asettelu.add(regButton, 3, 9);
-        
-        Label registerMessage = new Label();
         
         loginButton.setOnAction(e->{
             ikkuna.setScene(loginView);
