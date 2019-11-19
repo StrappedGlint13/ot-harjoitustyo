@@ -2,6 +2,7 @@
 
 | päivä  | aika | mitä tein  |
 | :----: |:-----| :----------|
-| 12.11. | 10   | viikon 2. laskarit ja vaatimusmäärittelyn luonti |
-| 18.11. | 6    | käyttöliittymän toteutuksen aloitus + viikon 3 laskarit |
+| 12.11. | 2    | Vaatimusmäärittelyn luonti |
+| 18.11. | 2    | Käyttöliittymän suunnittelua ja maven projektin alustusta |
+| 19.11  |      | Koodin rungon rakentamista |
 | yht    |      | 
