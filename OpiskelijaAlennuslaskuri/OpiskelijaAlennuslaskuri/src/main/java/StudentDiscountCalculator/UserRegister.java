@@ -2,7 +2,6 @@ package StudentDiscountCalculator;
 
 
 import Dao.Dao;
-import Dao.UserDao;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,11 +17,9 @@ import java.util.List;
  */
 public class UserRegister {
     private List<User> users;
-    private UserDao UserDao;
     
     public UserRegister () {
         this.users = new ArrayList<>();
-        this.UserDao = UserDao;
     }
     public void add (User user) {
         user.getUserName().toLowerCase();
@@ -45,15 +42,6 @@ public class UserRegister {
             i++;
         }
         return "This username is OK";
-    }
-     public boolean createUser(String userName, String email, int studentNumber) {
-        User user = new User(userName, email, studentNumber);
-        try {   
-            UserDao.create(user);
-        } catch (Exception ex) {
-            return false;
-        }
-        return true;
     }
     
 }
