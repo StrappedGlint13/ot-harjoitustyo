@@ -12,10 +12,19 @@ package StudentDiscountCalculator;
  */
 public class Product {
     private double normalPrice;
+
+    public double getStudentPrice() {
+        return studentPrice;
+    }
+
+    public void setStudentPrice(double studentPrice) {
+        this.studentPrice = studentPrice;
+    }
+    private double studentPrice;
     private double discountPercentage;
     private double dicount;
     
-    public Product (double normalPrice, double discountPercentage, double discount) {
+    public Product (double normalPrice, double studentPrice, double discountPercentage, double discount) {
         this.normalPrice = normalPrice;
         this.discountPercentage = discountPercentage;
         this.dicount = discount;

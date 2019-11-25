@@ -5,11 +5,13 @@
  */
 package Dao;
 
+import StudentDiscountCalculator.User;
 import Ui.Main;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -30,7 +32,7 @@ public class DBcoordinator {
         try {
             Connection connection = connect();
             PreparedStatement setDatabase = connection.prepareStatement(
-                    "CREATE TABLE IF NOT EXISTS Users(id INTEGER AUTO_INCREMENT PRIMARY KEY, username VARCHAR(200), email VARCHAR(20), studentNumber INTEGER);");
+                    "CREATE TABLE IF NOT EXISTS Users(id INTEGER AUTO_INCREMENT PRIMARY KEY, userName VARCHAR(200), email VARCHAR(200), studentNumber VARHAR(200), passWord VARCHAR (200));");
             setDatabase.execute();
             setDatabase.close();
             
@@ -45,7 +47,40 @@ public class DBcoordinator {
                     .getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    public void createUser(User user) {
+        Connection connection = connect();
+        
+        try {
+            PreparedStatement newUser = connection.prepareStatement("INSERT INTO Users(userName, email, studentNumber, passWord)"
+                    + " VALUES (?, ?, ?, ?);");
+            
+            newUser.setString(1, user.getUserName());
+            newUser.setString(2,user.getEmail());
+            newUser.setString(3, user.getStudentNumber());
+            newUser.setString(4, user.getPassword());
+          
+            newUser.executeUpdate();
+            newUser.close();
+                    } catch (SQLException ex) {
+            Logger.getLogger(DBcoordinator.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    public List<User> getAllUsers() throws SQLException {
+        Connection connection = connect();
+        
+        try {
+            PreparedStatement newUser = connection.prepareStatement("INSERT INTO Users(userName, email, studentNumber, passWord)"
+                    + " VALUES (?, ?, ?, ?);");
+            
+          
+            newUser.executeUpdate();
+            newUser.close();
+                    } catch (SQLException ex) {
+            Logger.getLogger(DBcoordinator.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+    
     private Connection connect() {
         Connection connection = null;
         try {

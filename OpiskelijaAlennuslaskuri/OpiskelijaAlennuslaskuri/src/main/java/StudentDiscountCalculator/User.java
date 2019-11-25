@@ -16,12 +16,22 @@ import java.util.Objects;
 public class User {
     public String userName;
     public String email;
-    public int  studentNumber;
+    public String  studentNumber;
+    public String password;
     
-    public User (String userName, String email, int studenNumber) {
+    public User (String userName, String email, String studenNumber, String password) {
         this.userName = userName;
         this.studentNumber = studentNumber;
         this.email = email;
+        this.password = password;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     @Override
@@ -56,11 +66,11 @@ public class User {
         this.userName = userName;
     }
 
-    public int getStudentNumber() {
+    public String getStudentNumber() {
         return studentNumber;
     }
 
-    public void setStudentNumber(int studentNumber) {
+    public void setStudentNumber(String studentNumber) {
         this.studentNumber = studentNumber;
     }
 

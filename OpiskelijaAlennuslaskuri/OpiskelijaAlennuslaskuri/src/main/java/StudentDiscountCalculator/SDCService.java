@@ -1,9 +1,15 @@
 package StudentDiscountCalculator;
 
 
-import Dao.Dao;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.Parent;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.GridPane;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -15,23 +21,18 @@ import java.util.List;
  *
  * @author matibrax
  */
-public class UserRegister {
+public class SDCService {
     private List<User> users;
     
-    public UserRegister () {
+    public SDCService () {
         this.users = new ArrayList<>();
     }
-    public void add (User user) {
+    public void addUser (User user) {
         user.getUserName().toLowerCase();
         user.getEmail().toLowerCase();
         
-        if (!this.users.equals(user)) {
-            this.users.add(user);
-        } else {
-            System.out.println("The user already exists.");
-        }
     }
-    public String searchWithUsername (String username) {
+    /*public String searchWithUsername (String username) {
         username.toLowerCase().trim();
         int i = 0;
         
@@ -42,6 +43,6 @@ public class UserRegister {
             i++;
         }
         return "This username is OK";
-    }
+    }*/
     
 }

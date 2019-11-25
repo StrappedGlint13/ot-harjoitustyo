@@ -14,7 +14,7 @@ import static org.junit.Assert.*;
 
 public class UserTest {
     
-    User jaakko = new User("Jaakko", "jaakko@helsinki.fi", 123456);
+    User jaakko = new User("Jaakko", "jaakko@helsinki.fi", 123456, "jotain");
     
     
     public UserTest() {
@@ -22,7 +22,7 @@ public class UserTest {
     }
     @Test
     public void addingSameUser() {
-        User jaakko = new User("Jaakko", "jaakko@helsinki.fi",123456);
+        User jaakko = new User("Jaakko", "jaakko@helsinki.fi",123456, "jotain");
         assertTrue(jaakko.equals(this.jaakko));
     }
    
