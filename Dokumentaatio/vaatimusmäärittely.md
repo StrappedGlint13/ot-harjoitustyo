@@ -14,6 +14,8 @@ Aluksi sovellusta on tarkoitus käyttää pelkästään normaalin käyttäjän t
 
 Sovelluksessa tulee olemaan 3 päänäkymää. Aluksi sovelluksessa avautuu kirjautumisnäkymä, josta voi siirtyä uuden käyttäjän luomisnäkymään tai, jos käyttäjä on jo olemassa, hän voi kirjautua suoraan opiskelija-alennussovelluslaskimeen. 
 
+<img src"https://github.com/StrappedGlint13/ot-harjoitustyo/blob/master/Dokumentaatio/kuvat/Vaatimusm%C3%A4%C3%A4rittely.png" width="250">
+
 **Perusversion tarjoama toiminnallisuus**
 
 ### Kirjautumisnäkymä
