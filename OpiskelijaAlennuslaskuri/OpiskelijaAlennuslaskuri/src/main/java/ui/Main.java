@@ -1,8 +1,7 @@
-package Ui;
+package ui;
 
-import DataBase.DBcoordinator;
-import StudentDiscountCalculator.SDCService;
-import StudentDiscountCalculator.User;
+import database.DBcoordinator;
+import domain.User;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -22,12 +21,11 @@ import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
 public class Main extends Application {
-
+    
     private Scene loginView;
     private Scene calculatorView;
     private Scene regView;
     private Scene userView;
-    private SDCService sDC;
 
     public static final Font ITALIC_FONT
             = Font.font(
@@ -41,10 +39,10 @@ public class Main extends Application {
     }
     
     @Override
+    
     public void start(Stage window) throws Exception {
-        
-        DBcoordinator DB = new DBcoordinator("DB");
-        DB.setDatabase();
+        DBcoordinator dataBasecoordinator = new DBcoordinator("db");
+        dataBasecoordinator.setDatabase();
 
         HBox putUsername = new HBox(10);
         HBox putPassword = new HBox(10);
@@ -64,8 +62,8 @@ public class Main extends Application {
         putPassword.getChildren().addAll(password, Password);
 
         Button loginButton = new Button();
-        Button regButton = new Button();
         loginButton.setFont(ITALIC_FONT);
+        Button regButton = new Button();
         regButton.setFont(ITALIC_FONT);
 
         loginButton.setText("Login");
@@ -84,6 +82,10 @@ public class Main extends Application {
 
         loginButton.setOnAction(e -> {
             window.setScene(loginView);
+        });
+        
+        regButton.setOnAction(e -> {
+            window.setScene(regView);
         });
 
         BorderPane newUserLayout = new BorderPane();
@@ -113,9 +115,6 @@ public class Main extends Application {
         newUserLayout.setRight(regTextFields);
         newUserLayout.setCenter(addUserButton);
 
-        regButton.setOnAction(e -> {
-            window.setScene(regView);
-        });
 
         Label checkMessage = new Label();
         BorderPane checkPane = new BorderPane();
@@ -134,7 +133,8 @@ public class Main extends Application {
             String checkPassword = newPassword.getText();
             String checkEmail = newEmail.getText();
             String checkStudentNumber = newStudentnumber.getText();
-
+            User testUser = new User(checkUsername, checkPassword, checkEmail, checkStudentNumber);
+                
             
             if (checkUsername.isEmpty() || checkPassword.isEmpty() || checkEmail.isEmpty() || checkStudentNumber.isEmpty()) {
                 checkMessage.setText("Fill all the fields!");
@@ -149,7 +149,7 @@ public class Main extends Application {
                 checkMessage.setTextFill(Color.RED);
                 window.setScene(bTC);
             } else {
-                DB.createUser(new User(newUser.getText(), newPassword.getText(), newEmail.getText(), newStudentnumber.getText()));
+                dataBasecoordinator.createUser(testUser);
                 window.setScene(loginView);
             }
         });

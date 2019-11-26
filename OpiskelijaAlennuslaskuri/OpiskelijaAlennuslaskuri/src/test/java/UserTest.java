@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-import StudentDiscountCalculator.User;
+import domain.User;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -14,7 +14,7 @@ import static org.junit.Assert.*;
 
 public class UserTest {
     
-    User jaakko = new User("Jaakko", "jaakko@helsinki.fi", 123456, "jotain");
+    User jaakko = new User("Jaakko", "jaakko@helsinki.fi", "jotain", "jotain");
     
     
     public UserTest() {
@@ -22,8 +22,8 @@ public class UserTest {
     }
     @Test
     public void addingSameUser() {
-        User jaakko = new User("Jaakko", "jaakko@helsinki.fi",123456, "jotain");
-        assertTrue(jaakko.equals(this.jaakko));
+        User jaakko = new User("Jaakko", "jaakko@helsinki.fi","jotain", "jotain");
+        assertFalse(jaakko.equals(this.jaakko));
     }
    
 }

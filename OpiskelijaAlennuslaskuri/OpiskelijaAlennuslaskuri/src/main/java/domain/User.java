@@ -1,4 +1,4 @@
-package StudentDiscountCalculator;
+package domain;
 
 
 import java.util.Objects;
@@ -19,43 +19,19 @@ public class User {
     public String  studentNumber;
     public String password;
     
-    public User (String userName, String email, String studentNumber, String password) {
+    public User(String userName, String email, String studentNumber, String password) {
         this.userName = userName;
         this.studentNumber = studentNumber;
         this.email = email;
         this.password = password;
     }
-
+    
     public String getPassword() {
         return password;
     }
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final User other = (User) obj;
-        if (this.studentNumber != other.studentNumber) {
-            return false;
-        }
-        if (!Objects.equals(this.userName, other.userName)) {
-            return false;
-        }
-        if (!Objects.equals(this.email, other.email)) {
-            return false;
-        }
-        return true;
     }
 
     public String getUserName() {

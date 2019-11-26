@@ -1,4 +1,4 @@
-package StudentDiscountCalculator;
+package domain;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -24,7 +24,7 @@ public class Product {
     private double discountPercentage;
     private double dicount;
     
-    public Product (double normalPrice, double studentPrice, double discountPercentage, double discount) {
+    public Product(double normalPrice, double studentPrice, double discountPercentage, double discount) {
         this.normalPrice = normalPrice;
         this.discountPercentage = discountPercentage;
         this.dicount = discount;
