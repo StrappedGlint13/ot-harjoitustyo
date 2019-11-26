@@ -91,30 +91,31 @@ public class Main extends Application {
         BorderPane newUserLayout = new BorderPane();
         VBox labels = new VBox(10);
         VBox regTextFields = new VBox(10);
-        labels.setPadding(new Insets(20, 20, 20, 20));
-        labels.setSpacing(20);
+        labels.setPadding(new Insets(10, 10, 10, 10));
+        labels.setSpacing(39);
 
         Label setUsername = new Label("Set username");
-        Label setPassword = new Label("Set password");
         Label email = new Label("Insert email address");
         Label studentNumber = new Label("Insert student number");
+        Label setPassword = new Label("Set password");
 
         TextField newUser = new TextField();
         TextField newPassword = new TextField();
         TextField newEmail = new TextField();
         TextField newStudentnumber = new TextField();
 
-        regTextFields.setPadding(new Insets(20, 20, 0, 0));
-        regTextFields.setSpacing(20);
+        regTextFields.setPadding(new Insets(20, 20, 20, 20));
+        regTextFields.setSpacing(25);
 
         Button addUserButton = new Button("Create new user");
-        labels.getChildren().addAll(setUsername, setPassword, email, studentNumber);
-        regTextFields.getChildren().addAll(newUser, newPassword, newEmail, newStudentnumber);
+        labels.getChildren().addAll(setUsername, email, studentNumber, setPassword);
+        regTextFields.getChildren().addAll(newUser, newEmail, newStudentnumber, newPassword, addUserButton);
+        
+        HBox settings = new HBox(10);
+        settings.getChildren().addAll(labels, regTextFields);
 
-        newUserLayout.setTop(labels);
-        newUserLayout.setRight(regTextFields);
-        newUserLayout.setCenter(addUserButton);
-
+        newUserLayout.setCenter(settings);
+     
 
         Label checkMessage = new Label();
         BorderPane checkPane = new BorderPane();
@@ -135,7 +136,6 @@ public class Main extends Application {
             String checkStudentNumber = newStudentnumber.getText();
             User testUser = new User(checkUsername, checkPassword, checkEmail, checkStudentNumber);
                 
-            
             if (checkUsername.isEmpty() || checkPassword.isEmpty() || checkEmail.isEmpty() || checkStudentNumber.isEmpty()) {
                 checkMessage.setText("Fill all the fields!");
                 checkMessage.setTextFill(Color.RED);
@@ -154,14 +154,13 @@ public class Main extends Application {
             }
         });
 
-        regView = new Scene(newUserLayout, 400, 400);
+        regView = new Scene(newUserLayout, 400, 300);
         loginView = new Scene(layout, 300, 300);
         window.setScene(loginView);
         window.show();
     }
-     @Override
+    @Override
     public void stop() {
-      // tee lopetustoimenpiteet täällä
-      System.out.println("sovellus sulkeutuu");
+      System.out.println("See you soon!");
     }
 }

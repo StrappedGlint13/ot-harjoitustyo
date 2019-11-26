@@ -7,4 +7,5 @@
 | 19.11  | 8    | Tietokannan alustamista, käyttöliittymän aloitusta ja vähän testausta |
 | 24.11  | 4    | Repon siivousta, tietokantametodien luomista, vaatimusmäärittelyn korjausta.
 | 25.11  | 7    | Uuden käyttäjän luominen ja vieminen tietokantaan.
-| yht    | 23   | 
+| 26.11  | 8    | Pakkauskaavion luominen, testien tekoa, repositorion saattaminen ajantasalle, käyttöliittymän modausta. 
+| yht    | 31   | 

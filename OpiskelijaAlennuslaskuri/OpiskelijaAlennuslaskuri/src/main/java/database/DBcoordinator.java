@@ -5,7 +5,9 @@ import ui.Main;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -57,22 +59,35 @@ public class DBcoordinator {
             Logger.getLogger(DBcoordinator.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
-    public List<User> getAllUsers() throws SQLException {
+    //In progress
+    /*
+    public List<User> listAlltheUsers() {
+        List<User> users = new ArrayList<>();
         Connection connection = connect();
-
         try {
-            PreparedStatement newUser = connection.prepareStatement("INSERT INTO Users(userName, email, studentNumber, passWord)"
-                    + " VALUES (?, ?, ?, ?);");
+            PreparedStatement getUsers = connection.prepareStatement("SELECT * FROM Users;");
+            ResultSet resultSet = getUsers.executeQuery();
 
-            newUser.executeUpdate();
-            newUser.close();
+            while (resultSet.next()) {
+                User user = new User();
+                user.setUserName(resultSet.getString("userName"));
+                user.setEmail(resultSet.getString("email"));
+                user.setStudentNumber(resultSet.getString("studentNumber"));
+                user.setPassword(resultSet.getString("passWord"));
+                users.add(user);
+
+            }
+
+            getUsers.close();
+            resultSet.close();
+            connection.close();
+
         } catch (SQLException ex) {
             Logger.getLogger(DBcoordinator.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return null;
+        return users;
     }
-
+    */
     private Connection connect() {
         Connection connection = null;
         try {
