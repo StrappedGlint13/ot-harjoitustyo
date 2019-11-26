@@ -3,7 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Dao;
+package DataBase;
+
 
 import StudentDiscountCalculator.User;
 import Ui.Main;
@@ -21,11 +22,11 @@ import java.util.logging.Logger;
  */
 public class DBcoordinator {
     
-    private String DB;
+    private String dataBase;
     
-    public DBcoordinator (String DBname) {
+    public DBcoordinator (String dBname) {
     
-    this.DB = DBname;
+    this.dataBase = dBname;
 }
     
     public void setDatabase() {
@@ -84,7 +85,7 @@ public class DBcoordinator {
     private Connection connect() {
         Connection connection = null;
         try {
-            String url = "jdbc:sqlite:" + DB;
+            String url = "jdbc:sqlite:" + dataBase;
             connection = DriverManager.getConnection(url);
         } catch (SQLException e) {
             System.out.println(e.getMessage());

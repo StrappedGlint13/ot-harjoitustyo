@@ -19,7 +19,7 @@ public class User {
     public String  studentNumber;
     public String password;
     
-    public User (String userName, String email, String studenNumber, String password) {
+    public User (String userName, String email, String studentNumber, String password) {
         this.userName = userName;
         this.studentNumber = studentNumber;
         this.email = email;
