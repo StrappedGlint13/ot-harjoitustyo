@@ -20,7 +20,6 @@ Sovelluksessa tulee olemaan 3 päänäkymää. Aluksi sovelluksessa avautuu kirj
 - Käyttäjä voi kirjautua laskimeen
   - Käyttäjä pääsee sisään laskimeen, mikäli käyttäjätunnus ja salasana löytyvät tietokannasta
 - Käyttäjä voi luoda uuden käyttäjätunnuksen / DONE
-  - 
 
 ### Rekisteröintinäkymä
 
