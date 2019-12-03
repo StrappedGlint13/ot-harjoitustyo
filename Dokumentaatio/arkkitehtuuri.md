@@ -18,6 +18,6 @@ Ohjelman käynnistyessä käyttäjän eteen ilmestyy sisäänkirjautumisnäkymä
 
 <img src="https://github.com/StrappedGlint13/ot-harjoitustyo/blob/master/Dokumentaatio/kuvat/Sekvenssikaavio%20 kirjautuminen.png" widht="250">
 
-Tapahtumankäsittelijä kutsuu sovelluslogiikasta vastaavaa domainService-oliota, joka tarkistaa tietokannasta täsmääkö käyttäjänimi ja salasana luotuja tunnuksia. Tämän domainService-olio tekee kutsumalla olio _findTheUser_ tietokannasta vastaavaa DBcoordinator-oliota. Jos käyttäjä löytyy, palauttaa DBcoordinator haetun käyttäjän DomainService-oliolle käsiteltäväksi. 
+Tapahtumankäsittelijä kutsuu sovelluslogiikasta vastaavaa domainService-oliota, joka tarkistaa tietokannasta täsmääkö käyttäjänimi ja salasana luotuja tunnuksia. Tämän domainService-olio tekee kutsumalla oliometodilla _findTheUser_ tietokannasta vastaavaa DBcoordinator-oliota. Parametreina ovat käyttäjän syöttämät käyttäjätunnus ja salasana. Jos käyttäjä löytyy, palauttaa DBcoordinator haetun käyttäjän DomainService-oliolle käsiteltäväksi. 
 
 Sovelluslogiikan puolella DomainService vielä tarkistaa, että käyttäjätunnukset vastaavat kirjautuvan käyttäjän tunnuksia metodeilla getUserName() ja getPassword(). Tämän jälkeen kontrolli palaa takaisin käyttöliittymälle, jossa Stage-olio _window_ asettaa Opiskelija-alennuslaskurin näkymän, ja palauttaa käyttäjän tiedot tallennetuista alennustuotteista. 
