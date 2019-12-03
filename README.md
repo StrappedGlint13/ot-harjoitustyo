@@ -10,6 +10,10 @@ Opiskelija-alennuslaskurin avulla käyttäjä voi seurata henkilökohtaista opis
 
 [arkkitehtuuri](https://github.com/StrappedGlint13/ot-harjoitustyo/blob/master/Dokumentaatio/arkkitehtuuri.md)
 
+## Releaset
+
+[Viikko5](https://github.com/StrappedGlint13/ot-harjoitustyo/releases/viikko5)
+
 ## Komentorivitoiminnot 
 
 ### Ohjelman suorittaminen
