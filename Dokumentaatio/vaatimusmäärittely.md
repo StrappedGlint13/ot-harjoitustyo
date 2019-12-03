@@ -19,20 +19,21 @@ Sovelluksessa tulee olemaan 3 päänäkymää. Aluksi sovelluksessa avautuu kirj
 **Perusversion tarjoama toiminnallisuus**
 
 ### Kirjautumisnäkymä
-- Käyttäjä voi kirjautua laskimeen
-  - Käyttäjä pääsee sisään laskimeen, mikäli käyttäjätunnus ja salasana löytyvät tietokannasta
-- Käyttäjä voi luoda uuden käyttäjätunnuksen / DONE
+- Käyttäjä voi kirjautua laskimeen / tehty
+  - Käyttäjä pääsee sisään laskimeen, mikäli käyttäjätunnus ja salasana löytyvät tietokannasta / tehty
+- Käyttäjä voi luoda uuden käyttäjätunnuksen / tehty
+- Käyttäjälle tulee ilmoitus, mikäli käyttäjätunnus tai salasana on väärin / tehty
 
 ### Rekisteröintinäkymä
 -Käyttäjä luo uuden ja uniikin käyttäjätunnuksen
-  - salasana ei saa sisältää ä, ö tai å:ta / DONE
-  - käyttäjätunnus on vähintään 2 merkkiä pitkä / DONE
-  - mitään kenttää ei saa jättää tyhjäksi / DONE 
-  - jos uuden käyttäjätunnus ei saavuta vähimmäisehtoja, ilmoittaa järjestelmä tästä / DONE 
-
+  - salasana ei saa sisältää ä, ö tai å:ta / tehty
+  - käyttäjätunnus on vähintään 2 merkkiä pitkä / tehty
+  - mitään kenttää ei saa jättää tyhjäksi / tehty 
+  - jos uuden käyttäjätunnus ei saavuta vähimmäisehtoja, ilmoittaa järjestelmä tästä / tehty 
+-Käyttäjä voi palata takaisin kirjautumisnäkymään / tehty 
 ###  Laskinnäkymä
   - käyttäjä voi lisätä tuotteita seurantaan
-   - Käyttäjä valitsee hakukentästä tuotteen, jolle on määritelty ominaisuudet tietokannassa.
+  - Käyttäjä valitsee hakukentästä tuotteen, jolle on määritelty ominaisuudet tietokannassa.
   - käyttäjä näkee paljon hän on saanut opiskelija-alennusta rahamäärällisesti, ja prosentuaalisesti
   - käyttäjä näkee vain oman opiskelija-alennusseurantansa
   - käyttäjä pystyy kirjautumaan ulos laskimesta

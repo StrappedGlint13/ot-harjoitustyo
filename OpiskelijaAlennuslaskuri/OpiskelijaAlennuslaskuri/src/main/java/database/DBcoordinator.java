@@ -132,11 +132,11 @@ public class DBcoordinator {
             findUser.setString(2, passWord);
             ResultSet rs = findUser.executeQuery();
            
-            while(rs.next()) {
+            while (rs.next()){
                 String searchUN = rs.getString("userName");
                 String searchPW = rs.getString("passWord");
                 
-                if (searchUN.equals(userName) && searchPW.equals(passWord)){
+                if (searchUN.equals(userName) && searchPW.equals(passWord)) {
                     searchUser.setUserName(userName);
                     searchUser.setPassword(passWord);
                 }

@@ -14,7 +14,7 @@ import java.util.List;
  */
 public class Calculator {
     
-    List <Product> products;
+    List<Product> products;
     
     public Calculator() {
         

@@ -8,5 +8,5 @@
 | 24.11  | 4    | Repon siivousta, tietokantametodien luomista, vaatimusmäärittelyn korjausta.
 | 25.11  | 7    | Uuden käyttäjän luominen ja vieminen tietokantaan.
 | 26.11  | 8    | Pakkauskaavion luominen, testien tekoa, repositorion saattaminen ajantasalle, käyttöliittymän modausta. 
-| 30.11	 | 2    | Kirjautumismetodien alustamista. 	
-| yht    | 33   | 
+| 30.11	 | 2    | Kirjautumismetodien alustamista.
+| 3.12   | 9    | Testien tekoa, vaatimusmäärittelyn päivittämistä, toimivan jar-tiedoston luominen, tyylin tarkistus (checkstyleä varten)
