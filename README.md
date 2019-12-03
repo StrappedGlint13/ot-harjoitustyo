@@ -21,7 +21,7 @@ Opiskelija-alennuslaskurin avulla käyttäjä voi seurata henkilökohtaista opis
 Ohjelma voidaan suorittaa komennolla
 
 ```
-mvn compile exec:java -Dexec.mainClass=Ui.Main
+mvn compile exec:java -Dexec.mainClass=ui.CalculatorUi
 ```
 
 ### Testaus
