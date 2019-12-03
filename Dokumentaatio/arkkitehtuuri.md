@@ -14,10 +14,10 @@ Sovelluksen muutamia tärkeitä toiminnallisuuksia kuvattuna sekvenssikaavioina.
 
 ### Käyttäjän kirjautuminen 
 
-Ohjelman käynnistyessä käyttäjän eteen ilmestyy sisäänkirjautumisnäkymä. Käyttäjän syöttää käyttäjätunnuksensa ja salasanansa niille tarkoitettuihin kenttiin, jonka jälkeen hän painaa _loginButton_ -nappia, jonka jälkeen sovellus etenee seuraavasti:
+Ohjelman käynnistyessä käyttäjän eteen ilmestyy sisäänkirjautumisnäkymä. Käyttäjän syöttää käyttäjätunnuksensa ja salasanansa niille tarkoitettuihin kenttiin. Tämän jälkeen hän painaa _loginButton_ -nappia, jonka jälkeen sovellus etenee seuraavasti:
 
 <img src="https://github.com/StrappedGlint13/ot-harjoitustyo/blob/master/Dokumentaatio/kuvat/Sekvenssikaavio%20 kirjautuminen.png" widht="250">
 
-Tapahtumankäsittelijä kutsuu sovelluslogiikasta vastaavaa domainService-oliota, joka tarkistaa tietokannasta täsmääkö käyttäjänimi ja salasana luotuja tunnuksia. Tämän domainService-olio tekee kutsumalla oliometodilla _findTheUser_ tietokannasta vastaavaa DBcoordinator-oliota. Parametreina ovat käyttäjän syöttämät käyttäjätunnus ja salasana. Jos käyttäjä löytyy, palauttaa DBcoordinator haetun käyttäjän DomainService-oliolle käsiteltäväksi. 
+Tapahtumankäsittelijä kutsuu sovelluslogiikasta vastaavaa _domainService_-oliota, joka tarkistaa tietokannasta täsmääkö käyttäjänimi ja salasana luotuja tunnuksia. Tämän _domainService_-olio tekee kutsumalla oliometodilla _findTheUser_ tietokannasta vastaavaa _DBcoordinator_-oliota. Parametreina ovat käyttäjän syöttämät käyttäjätunnus ja salasana. Jos käyttäjä löytyy, palauttaa _DBcoordinator_ haetun käyttäjän _DomainService_-oliolle käsiteltäväksi. 
 
-Sovelluslogiikan puolella DomainService vielä tarkistaa, että käyttäjätunnukset vastaavat kirjautuvan käyttäjän tunnuksia metodeilla getUserName() ja getPassword(). Tämän jälkeen kontrolli palaa takaisin käyttöliittymälle, jossa Stage-olio _window_ asettaa Opiskelija-alennuslaskurin näkymän, ja palauttaa käyttäjän tiedot tallennetuista alennustuotteista. 
+Sovelluslogiikan puolella _DomainService_ vielä tarkistaa, että käyttäjätunnukset vastaavat kirjautuvan käyttäjän tunnuksia metodeilla _getUserName()_ ja _getPassword()_. Tämän jälkeen kontrolli palaa takaisin käyttöliittymälle, jossa _Stage_-olio _window_ asettaa Opiskelija-alennuslaskurin näkymän, ja palauttaa käyttäjän tiedot tallennetuista alennustuotteista. 
