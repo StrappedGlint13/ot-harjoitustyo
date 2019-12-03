@@ -10,4 +10,4 @@ Pakkaus _ui_ toteuttaa ohjelman käyttöliittymän javaFX:n avulla. Sovelluslogi
 
 Ohjelman pakkausrakenne näyttää tältä:
 
-<img src=https://github.com/StrappedGlint13/ot-harjoitustyo/blob/master/Dokumentaatio/kuvat/Sekvenssikaavio_%20kirjautuminen.png" widht="250">
+<img src="https://github.com/StrappedGlint13/ot-harjoitustyo/blob/master/Dokumentaatio/kuvat/Sekvenssikaavio_%20kirjautuminen.png" ="250">
