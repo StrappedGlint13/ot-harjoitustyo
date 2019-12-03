@@ -26,7 +26,6 @@ Testit suoritetaan komennolla
 
 ```
 mvn test
-
 ```
 Testikattavuusraportti luodaan komennolla
 
