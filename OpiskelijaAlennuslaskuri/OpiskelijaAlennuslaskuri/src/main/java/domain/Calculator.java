@@ -5,10 +5,22 @@
  */
 package domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author matibrax
  */
 public class Calculator {
+    
+    List <Product> products;
+    
+    public Calculator() {
+        
+        this.products = new ArrayList<>();
+    }
+    
+    
     
 }

@@ -34,7 +34,7 @@ public class DBcoordinatorTest{
 
         try {
             Connection connection = connect();
-            testdb = new DBcoordinator("test.db");    
+            testdb = new DBcoordinator(":memory:");    
             connection.close();
         } catch (SQLException ex) {
             Logger.getLogger(DBcoordinatorTest.class.getName()).log(Level.SEVERE, null, ex);

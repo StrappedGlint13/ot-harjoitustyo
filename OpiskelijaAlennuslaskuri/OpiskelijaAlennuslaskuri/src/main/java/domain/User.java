@@ -19,15 +19,16 @@ public class User {
     public String  studentNumber;
     public String password;
     
-    public User(String userName, String email, String studentNumber, String password) {
+    public User(String userName, String password, String email, String studentNumber) {
         this.userName = userName;
         this.studentNumber = studentNumber;
         this.email = email;
         this.password = password;
-    }
-    public User() {
+    }   
+    public User (String userName, String passWord) {
         
     }
+
     
     public String getPassword() {
         return password;
