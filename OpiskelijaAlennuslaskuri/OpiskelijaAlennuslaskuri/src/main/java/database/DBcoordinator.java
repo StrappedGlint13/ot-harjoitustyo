@@ -60,6 +60,7 @@ public class DBcoordinator {
             Logger.getLogger(DBcoordinator.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    /* IN PROFRESS
     
     public void createProduct(Product product) {
         Connection connection = connect();
@@ -80,6 +81,8 @@ public class DBcoordinator {
             Logger.getLogger(DBcoordinator.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    */
+    
     //In progress
     /*
     public List<User> listAlltheUsers() {
@@ -148,9 +151,6 @@ public class DBcoordinator {
             Logger.getLogger(DBcoordinator.class.getName()).log(Level.SEVERE, null, ex);
         }
         return searchUser;
-    }
-    public String getDatabaseName() {
-        return dataBase;
     }
 
 }

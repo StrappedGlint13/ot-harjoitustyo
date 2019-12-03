@@ -22,11 +22,26 @@ public class ProductTest {
   
     @Before
     public void setUp() {
-        product = new Product("Coffee", 1.8, 0.25, 1.2);
+        product = new Product("Coffee", 1.8, 1.2, 0.25);
     }
     
     @Test
     public void constructorWorks() {
         assertEquals(product, product);
+    }
+    @Test
+    public void getNormalPriceTest() {
+        double price = 1.8;
+        assertTrue(product.getNormalPrice() == price);
+    }
+    @Test
+    public void getDiscountPercentageTest() {
+        double price = 0.25;
+        assertTrue(product.getDiscountPercentage() == price);
+    }
+    @Test
+    public void getStudentPriceTest() {
+        double price = 1.2;
+        assertTrue(product.getStudentPrice() == price);
     }
 }

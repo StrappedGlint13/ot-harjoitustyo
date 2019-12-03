@@ -30,13 +30,14 @@ Sovelluksessa tulee olemaan 3 päänäkymää. Aluksi sovelluksessa avautuu kirj
   - käyttäjätunnus on vähintään 2 merkkiä pitkä / tehty
   - mitään kenttää ei saa jättää tyhjäksi / tehty 
   - jos uuden käyttäjätunnus ei saavuta vähimmäisehtoja, ilmoittaa järjestelmä tästä / tehty 
--Käyttäjä voi palata takaisin kirjautumisnäkymään / tehty 
+  -Käyttäjä voi palata takaisin kirjautumisnäkymään / tehty 
+
 ###  Laskinnäkymä
   - käyttäjä voi lisätä tuotteita seurantaan
   - Käyttäjä valitsee hakukentästä tuotteen, jolle on määritelty ominaisuudet tietokannassa.
   - käyttäjä näkee paljon hän on saanut opiskelija-alennusta rahamäärällisesti, ja prosentuaalisesti
   - käyttäjä näkee vain oman opiskelija-alennusseurantansa
-  - käyttäjä pystyy kirjautumaan ulos laskimesta
+  - käyttäjä pystyy kirjautumaan ulos laskimesta / tehty
   
 ###  Jatkokehitysidoeita
   
