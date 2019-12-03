@@ -1,11 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+package database;
+
 
 import database.DBcoordinator;
+import domain.DomainService;
 import domain.User;
+import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -28,6 +27,7 @@ import static org.junit.Assert.*;
 public class DBcoordinatorTest{
    
     DBcoordinator testdb;
+    DomainService domainservice;
     
     @Before
     public void setUp() throws Exception {
@@ -43,6 +43,8 @@ public class DBcoordinatorTest{
     
     @After
     public void tearDown() {
+        File file = new File(":memory:");
+        file.delete();
     }
     
     @Test

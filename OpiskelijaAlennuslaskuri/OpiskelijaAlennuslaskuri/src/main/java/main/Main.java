@@ -1,9 +1,11 @@
 
-package java;
+package main;
+
+import ui.CalculatorUi;
 
 
 public class Main {
     public static void main(String[] args) {
-        Main.main(args);
+        CalculatorUi.main(args);
     }
 }

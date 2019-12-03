@@ -26,7 +26,7 @@ import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
-public class Main extends Application {
+public class CalculatorUi extends Application {
 
     private Scene loginView;
     private Scene calculatorView;
@@ -39,7 +39,7 @@ public class Main extends Application {
                     Font.getDefault().getSize());
 
     public static void main(String[] args) {
-        launch(Main.class);
+        launch(args);
 
     }
 

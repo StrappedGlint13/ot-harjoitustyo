@@ -2,7 +2,7 @@ package database;
 
 import domain.Product;
 import domain.User;
-import ui.Main;
+import ui.CalculatorUi;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -37,7 +37,7 @@ public class DBcoordinator {
             connection.close();
 
         } catch (SQLException ex) {
-            Logger.getLogger(Main.class
+            Logger.getLogger(CalculatorUi.class
                     .getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -120,20 +120,6 @@ public class DBcoordinator {
         return connection;
     }
 
-    public boolean getProduct(String name) {
-        Connection connection = connect();
-
-        try {
-            PreparedStatement newUser = connection.prepareStatement("SELECT FROM Products WHERE name=?");
-            
-            newUser.executeUpdate();
-            newUser.close();
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(DBcoordinator.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return true;
-    }
     public User findTheUser(String userName, String passWord) {
         String dbUsername = null;
         String dbpassWord = null;
@@ -162,6 +148,9 @@ public class DBcoordinator {
             Logger.getLogger(DBcoordinator.class.getName()).log(Level.SEVERE, null, ex);
         }
         return searchUser;
+    }
+    public String getDatabaseName() {
+        return dataBase;
     }
 
 }

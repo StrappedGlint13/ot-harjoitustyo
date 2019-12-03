@@ -25,10 +25,8 @@ public class User {
         this.email = email;
         this.password = password;
     }   
-    public User (String userName, String passWord) {
-        
+    public User (String userName, String passWord) {   
     }
-
     
     public String getPassword() {
         return password;
@@ -50,17 +48,8 @@ public class User {
         return studentNumber;
     }
 
-    public void setStudentNumber(String studentNumber) {
-        this.studentNumber = studentNumber;
-    }
-
     public String getEmail() {
         return email;
     }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-    
-    
+   
 }

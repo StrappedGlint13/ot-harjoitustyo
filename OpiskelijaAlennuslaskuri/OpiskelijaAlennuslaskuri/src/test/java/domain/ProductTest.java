@@ -3,8 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+package domain;
 
-import domain.User;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -12,18 +12,21 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-public class UserTest {
+/**
+ *
+ * @author matibrax
+ */
+public class ProductTest {
     
-    User jaakko = new User("Jaakko", "jaakko@helsinki.fi", "jotain", "jotain");
-    
-    
-    public UserTest() {
-        
+    Product product;
+  
+    @Before
+    public void setUp() {
+        product = new Product("Coffee", 1.8, 0.25, 1.2);
     }
+    
     @Test
-    public void addingSameUser() {
-        User jaakko = new User("Jaakko", "jaakko@helsinki.fi","jotain", "jotain");
-        assertFalse(jaakko.equals(this.jaakko));
+    public void constructorWorks() {
+        assertEquals(product, product);
     }
-   
 }

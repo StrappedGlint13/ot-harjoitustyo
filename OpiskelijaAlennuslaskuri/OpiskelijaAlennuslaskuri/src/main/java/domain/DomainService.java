@@ -19,6 +19,7 @@ import javafx.scene.layout.VBox;
 public class DomainService {
 
     private DBcoordinator databaseCoordinator;
+    private User user;
 
     public DomainService(DBcoordinator databaseCoordinator) {
         this.databaseCoordinator = databaseCoordinator;
@@ -32,30 +33,4 @@ public class DomainService {
         }
         return true;
     }
-
-    public void addProductToCalculator(Product product) {
-        databaseCoordinator.createProduct(product);
-    }
-    /*
-    public Node TableView() {
-        
-        TableView tableView = new TableView();
-        
-        TableColumn<String, Product> column1 = new TableColumn<>("Product name");
-        column1.setCellValueFactory(new PropertyValueFactory<>("name"));
-
-        TableColumn<String, Product> column2 = new TableColumn<>("Normal price");
-        column2.setCellValueFactory(new PropertyValueFactory<>("normalPrice"));
-
-        TableColumn<String, Product> column3 = new TableColumn<>("Student price");
-        column3.setCellValueFactory(new PropertyValueFactory<>("studentPrice"));
-
-        TableColumn<String, Product> column4 = new TableColumn<>("Discount percentage");
-        column4.setCellValueFactory(new PropertyValueFactory<>("discountPercentage"));
-        tableView.getColumns().addAll(column1, column2, column3, column4);
-
-        
-        return tableView;
-    }
-     */
 }
