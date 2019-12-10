@@ -27,7 +27,6 @@ public class DomainServiceTest {
     @Test
     public void constructorWorks() {
         assertEquals(dbcoordinator, dbcoordinator);
-        assertEquals(user, user);
     }
     @Test
     public void checkIfUserExistsWorkd() {
@@ -38,7 +37,12 @@ public class DomainServiceTest {
         user = dbcoordinator.findTheUser(user.getUserName(), user.getPassword());
         test = domainService.checkIfuserExist(user.getUserName(), user.getPassword());
         assertEquals(test, test);
-     
+        
+        user.setUserName(null);
+        user.setPassword(null);
+        
+        test = domainService.checkIfuserExist(user.getUserName(), user.getPassword());
+        
     }
   
 }

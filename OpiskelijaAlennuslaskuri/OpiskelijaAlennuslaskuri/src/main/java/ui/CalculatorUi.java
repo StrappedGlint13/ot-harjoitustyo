@@ -1,9 +1,14 @@
 package ui;
+
 import database.DBcoordinator;
 import domain.DomainService;
 import domain.Product;
 import domain.User;
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -37,6 +42,9 @@ public class CalculatorUi extends Application {
                     "Verdana",
                     FontPosture.ITALIC,
                     Font.getDefault().getSize());
+
+    private ObservableList<Product> data
+            = FXCollections.observableArrayList();
 
     public static void main(String[] args) {
         launch(args);
@@ -85,15 +93,14 @@ public class CalculatorUi extends Application {
         loginLayout.add(putPassword, 3, 5);
         loginLayout.add(loginButton, 3, 7);
         loginLayout.add(regButton, 3, 9);
-        
+
         //errorScene 1
         Label errorMessage1 = new Label("User does not exists or password is wrong");
         errorMessage1.setTextFill(Color.RED);
         BorderPane errorPane1 = new BorderPane();
         VBox errorBox1 = new VBox(20);
-        errorBox1.setPadding(new Insets(9,9,9,5));
+        errorBox1.setPadding(new Insets(9, 9, 9, 5));
         Button backToLogin = new Button("OK");
-        
 
         backToLogin.setOnAction(e -> {
             window.setScene(loginView);
@@ -106,12 +113,12 @@ public class CalculatorUi extends Application {
         loginButton.setOnAction(e -> {
             String checkUsername = usernameField.getText();
             String checkPassword = passwordField.getText();
-            
-             if (dService.checkIfuserExist(checkUsername, checkPassword) == true) {
+
+            if (dService.checkIfuserExist(checkUsername, checkPassword) == true) {
                 window.setScene(calculatorView);
             } else {
                 window.setScene(errorScene1);
-            } 
+            }
 
         });
 
@@ -159,7 +166,6 @@ public class CalculatorUi extends Application {
         BorderPane errorPane2 = new BorderPane();
         VBox errorBox2 = new VBox(20);
         Button backToCreation = new Button("OK");
-        
 
         backToCreation.setOnAction(e -> {
             window.setScene(regView);
@@ -195,15 +201,13 @@ public class CalculatorUi extends Application {
         BorderPane calculatorPane = new BorderPane();
 
         HBox topCalPanel = new HBox(850);
-        Label calUsername = new Label("USERNAME");
-        calUsername.setFont(ITALIC_FONT);
         Button logoutButton = new Button("Logout");
         logoutButton.setFont(ITALIC_FONT);
         logoutButton.setOnAction(e -> {
             window.setScene(loginView);
         });
         topCalPanel.setAlignment(Pos.BOTTOM_RIGHT);
-        topCalPanel.getChildren().addAll(calUsername, logoutButton);
+        topCalPanel.getChildren().addAll(logoutButton);
         calculatorPane.setTop(topCalPanel);
 
         TableView tableView = new TableView();
@@ -224,13 +228,58 @@ public class CalculatorUi extends Application {
         tableView.setPrefWidth(600);
         tableView.setPrefHeight(500);
         selectionModel.setSelectionMode(SelectionMode.MULTIPLE);
-        Button addButton = new Button("Add");
-        
-        tableView.getItems().add(new Product("name", 0, 0, 0));
-        VBox tableViewBox = new VBox(tableView);
-        
+
+        //adding the product to the tracker
+        HBox addingBox = new HBox();
+
+        final TextField addProductName = new TextField();
+        addProductName.setPromptText("Product name");
+        addProductName.setMaxWidth(column1.getPrefWidth());
+        final TextField addNormalPrice = new TextField();
+        addNormalPrice.setMaxWidth(column2.getPrefWidth());
+        addNormalPrice.setPromptText("Normal price");
+        final TextField addStudentPrice = new TextField();
+        addStudentPrice.setMaxWidth(column3.getPrefWidth());
+        addStudentPrice.setPromptText("Student price");
+        final TextField addDiscoutedPercentage = new TextField();
+        addDiscoutedPercentage.setMaxWidth(column3.getPrefWidth());
+        addDiscoutedPercentage.setPromptText("Discounted percentage");
+
+        tableView.setItems(data);
+
+        final Button addStudentProduct = new Button("Add");
+        addStudentProduct.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent e) {
+                double addNP = 0.0;
+                addNP = Double.parseDouble(addNormalPrice.getText());
+                double addSP = 0.0;
+                addSP = Double.parseDouble(addStudentPrice.getText());
+                double addDP = 0.0;
+                addDP = Double.parseDouble(addDiscoutedPercentage.getText());
+
+                data.add(new Product(
+                        addProductName.getText(),
+                        addNP,
+                        addSP,
+                        addDP
+                ));
+
+                dService.addProductDB(data.get(data.size() - 1));
+                addProductName.clear();
+                addNormalPrice.clear();
+                addStudentPrice.clear();
+                addDiscoutedPercentage.clear();
+            }
+        });
+
+        addingBox.getChildren().addAll(addProductName, addNormalPrice, addStudentPrice, addDiscoutedPercentage, addStudentProduct);
+        addingBox.setSpacing(3);
+
+        VBox tableViewBox = new VBox(tableView, addingBox);
+
         calculatorPane.setCenter(tableViewBox);
-        calculatorPane.setBottom(addButton);
+
         //Scenes
         calculatorView = new Scene(calculatorPane, 1000, 600);
         regView = new Scene(newUserLayout, 400, 300);
@@ -238,10 +287,9 @@ public class CalculatorUi extends Application {
         window.setScene(loginView);
         window.show();
     }
-    
 
     @Override
     public void stop() {
-        System.out.println("See you soon!");
+
     }
 }

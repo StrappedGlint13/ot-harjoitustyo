@@ -12,15 +12,34 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
+/**
+ *
+ * Tietokantaa käsittelevä luokka
+ *
+ *
+ * @author Matias Brax
+ *
+ */
 
 public class DBcoordinator {
 
     private String dataBase;
 
     public DBcoordinator(String dataBase) {
-
+        
         this.dataBase = dataBase;
     }
+    
+    /**
+     * 
+     *
+     * Alustaa tietokannan
+     *
+     * 
+     */
 
     public void setDatabase() {
         try {
@@ -31,9 +50,10 @@ public class DBcoordinator {
             setDatabase.close();
 
             PreparedStatement setDatabase1 = connection.prepareStatement(
-                    "CREATE TABLE IF NOT EXISTS Products(id INTEGER AUTO_INCREMENT PRIMARY KEY, name VARCHAR(200), INTEGER normalPrice, discountPercentage INTEGER, studentPrice INTEGER);");
+                    "CREATE TABLE IF NOT EXISTS Products(id INTEGER AUTO_INCREMENT PRIMARY KEY, name VARCHAR(200), normalPrice DOUBLE, studentPrice DOUBLE, discountPercentage DOUBLE);");
             setDatabase1.execute();
             setDatabase1.close();
+            
             connection.close();
 
         } catch (SQLException ex) {
@@ -41,6 +61,13 @@ public class DBcoordinator {
                     .getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    /**
+     * Luo uuden käyttäjän tietokantaan
+     *
+     * @param user käyttäjä
+     * 
+     */
 
     public void createUser(User user) {
         Connection connection = connect();
@@ -60,58 +87,55 @@ public class DBcoordinator {
             Logger.getLogger(DBcoordinator.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    /* IN PROFRESS
     
     public void createProduct(Product product) {
         Connection connection = connect();
 
         try {
-            PreparedStatement newUser = connection.prepareStatement("INSERT INTO Products(name, normalPrice, discountPercentage, studentPrice)"
+            PreparedStatement newProduct = connection.prepareStatement("INSERT INTO Products(name, normalPrice, studentPrice, discountPercentage)"
                     + " VALUES (?, ?, ?, ?);");
 
-            newUser.setString(1, product.getName());
-            newUser.setDouble(2, product.getNormalPrice());
-            newUser.setDouble(3, product.getDiscountPercentage());
-            newUser.setDouble(4, product.getStudentPrice());
+            newProduct.setString(1, product.getName());
+            newProduct.setDouble(2, product.getNormalPrice());
+            newProduct.setDouble(3, product.getStudentPrice());
+            newProduct.setDouble(4, product.getDiscountPercentage());
 
-            newUser.executeUpdate();
-            newUser.close();
+            newProduct.executeUpdate();
+            newProduct.close();
             
         } catch (SQLException ex) {
             Logger.getLogger(DBcoordinator.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    */
     
-    //In progress
-    /*
-    public List<User> listAlltheUsers() {
-        List<User> users = new ArrayList<>();
+   
+    public ObservableList<Product> returnProducts(User user) {
+        ObservableList<Product> products = FXCollections.observableArrayList(); 
         Connection connection = connect();
         try {
-            PreparedStatement getUsers = connection.prepareStatement("SELECT * FROM Users;");
-            ResultSet resultSet = getUsers.executeQuery();
+            PreparedStatement getProducts = connection.prepareStatement("SELECT * FROM Products;");
+            ResultSet resultSet = getProducts.executeQuery();
+            Product product = new Product("", 0.0, 0.0, 0.0);
 
             while (resultSet.next()) {
-                User user = new User();
-                user.setUserName(resultSet.getString("userName"));
-                user.setEmail(resultSet.getString("email"));
-                user.setStudentNumber(resultSet.getString("studentNumber"));
-                user.setPassword(resultSet.getString("passWord"));
-                users.add(user);
+                product.setName(resultSet.getString("name"));
+                product.setNormalPrice(resultSet.getDouble("normalPrice"));
+                product.setStudentPrice(resultSet.getDouble("studentPrice"));
+                product.setDiscountPercentage(resultSet.getDouble("discountPercentage"));
+                products.add(product);
 
             }
 
-            getUsers.close();
+            getProducts.close();
             resultSet.close();
             connection.close();
 
         } catch (SQLException ex) {
             Logger.getLogger(DBcoordinator.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return users;
+        return products;
     }
-    */
+    
     private Connection connect() {
         Connection connection = null;
         try {

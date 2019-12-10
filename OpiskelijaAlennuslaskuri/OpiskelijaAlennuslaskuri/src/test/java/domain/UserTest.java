@@ -15,7 +15,7 @@ public class UserTest {
     @Test
     public void addingSameUser() {
         User jaakko = new User("Jaakko", "jaakko@helsinki.fi","123456", "password");
-        assertFalse(jaakko.equals(this.jaakko));
+        assertTrue(jaakko.equals(this.jaakko));
     }
     @Test
     public void getNameTest() {

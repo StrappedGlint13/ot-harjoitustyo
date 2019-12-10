@@ -48,6 +48,7 @@
                 <configuration>
                     <excludes>
                         <exclude>ui/*</exclude>
+                        <exclude>main/*</exclude>
                     </excludes>
                 </configuration>  
                 <executions>
@@ -86,6 +87,19 @@
                         </configuration>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.10.3</version>
+                <configuration>
+                    <javadocExecutable>
+                        ${java.home}/bin/javadoc
+                    </javadocExecutable>
+                    <source>
+                        8
+                    </source>
+                    </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

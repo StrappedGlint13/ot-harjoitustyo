@@ -1,18 +1,17 @@
 package domain;
 
 
+/**
+ * 
+ * Järjestelmän käyttäjää kuvaava luokka.
+ * 
+ * 
+ * @author Matias Brax
+ * 
+ */
+
 import java.util.Objects;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- *
- * @author matibrax
- */
 public class User {
     public String userName;
     public String email;
@@ -50,6 +49,16 @@ public class User {
 
     public String getEmail() {
         return email;
+    }
+    
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof User)) {
+            return false;
+        }
+        
+        User other = (User) obj;
+        return userName.equals(other.userName);
     }
    
 }
