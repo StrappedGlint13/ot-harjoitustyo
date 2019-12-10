@@ -10,3 +10,5 @@
 | 26.11  | 8    | Pakkauskaavion luominen, testien tekoa, repositorion saattaminen ajantasalle, käyttöliittymän modausta. 
 | 30.11	 | 2    | Kirjautumismetodien alustamista.
 | 3.12   | 9    | Testien tekoa, vaatimusmäärittelyn päivittämistä, toimivan jar-tiedoston luominen, tyylin tarkistus (checkstyleä varten)
+| 9.12   | 3    | Seurantanäkymän modausta, turhien tekstien siivousta ja JavaDoc aloitettu.
+Yhteensä |45	|

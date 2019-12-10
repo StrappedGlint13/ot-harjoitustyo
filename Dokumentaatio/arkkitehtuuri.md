@@ -4,14 +4,45 @@
 
 Ohjelma rakentuu kolmelle tasolle. Koodin pakkausrakennetta kuvaa seuraava pakkauskaavio:
 
-<img src="https://github.com/StrappedGlint13/ot-harjoitustyo/blob/master/Dokumentaatio/kuvat/Pakkauskaavio.png" widht="250">
+<img src="https://github.com/StrappedGlint13/ot-harjoitustyo/blob/master/Dokumentaatio/kuvat/pakkaus.png" widht="250">
 
 Pakkaus _ui_ toteuttaa ohjelman käyttöliittymän javaFX:n avulla. Sovelluslogiikasta vastaa pakkaus _domain_. Pysyväistallennuksesta vastaa _database_ pakkaus, jota käytetään sqlite:llä paikalliseen tietokannan hallintaan. 
 
 ## Käyttöliittymä
 
-Käyttöliittymästä vastaava luokka on [CalculatorUi] 
+Käyttöliittymästä vastaava luokka on [CalculatorUi](https://github.com/StrappedGlint13/ot-harjoitustyo/blob/master/OpiskelijaAlennuslaskuri/OpiskelijaAlennuslaskuri/src/main/java/ui/CalculatorUi.java). Käyttöliittymä koostuu [Scene]-olioina toteutetuista kolmestä päänäkymästä ja kahdesta virheilmoitus-näkymästä:
 
+- kirjautumisnäkymä
+
+- rekisteröintinäkymä
+
+- laskinnäkymä
+
+- epäonnistunut kirjautumisnäkymä
+
+- epäonnistunut rekisteröintinäkmyä
+
+Jokainen näkymä on vuorollaan sijoitettuna sovelluksen [stage](https://docs.oracle.com/javase/8/javafx/api/javafx/stage/Stage.html)-olioon näkyväksi.
+
+Käyttöliittymä on eriytetty sovelluslogiikasta, josta se hyödyntää _DomainServicen_ tarjoamia apumetodeja. 
+
+## Sovelluslogiikka
+
+Sovelluksen loogisen datamallin muodostavat luokat User ja Product, jotka kuvaavat käyttäjiä ja heidän ostamiaan opiskelija-alennettuja tuotteita.<img src="https://github.com/StrappedGlint13/ot-harjoitustyo/blob/master/Dokumentaatio/kuvat/looginen%20datamalli.png" widht="250">
+
+[DomainService](https://github.com/StrappedGlint13/ot-harjoitustyo/blob/master/OpiskelijaAlennuslaskuri/OpiskelijaAlennuslaskuri/src/main/java/domain/DomainService.java)-olio vastaa toiminnallisuuksista kokonaisuuksista, ja tarjoaa käyttöliittymälle mm. seuraavia metodeja:
+
+- checkIfuserExist(String userName, String passWord)
+- ObservableList logIn (User user)
+- User getUser(String userName, String passWord)
+- addProductDB(Product product) 
+
+_DomainService_ käsittelee myös käyttäjiä ja tuotteita pakkauksessa _database_ luokan _DBcoordinator_ avulla.
+
+Sovelluslogiikkaa ja muita ohjelman osia kuvaava luokka/pakkauskaavio:
+
+<img src="https://github.com/StrappedGlint13/ot-harjoitustyo/blob/master/Dokumentaatio/kuvat/Pakkauskaavio.png" widht="250">
+ 
 ## Päätoiminnallisuudet
 
 Sovelluksen muutamia tärkeitä toiminnallisuuksia kuvattuna sekvenssikaavioina.
