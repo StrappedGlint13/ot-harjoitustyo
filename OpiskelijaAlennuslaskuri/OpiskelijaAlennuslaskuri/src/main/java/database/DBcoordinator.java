@@ -159,7 +159,7 @@ public class DBcoordinator {
             findUser.setString(2, passWord);
             ResultSet rs = findUser.executeQuery();
            
-            while (rs.next()){
+            while (rs.next()) {
                 String searchUN = rs.getString("userName");
                 String searchPW = rs.getString("passWord");
                 
