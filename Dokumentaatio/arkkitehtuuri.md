@@ -8,6 +8,10 @@ Ohjelma rakentuu kolmelle tasolle. Koodin pakkausrakennetta kuvaa seuraava pakka
 
 Pakkaus _ui_ toteuttaa ohjelman käyttöliittymän javaFX:n avulla. Sovelluslogiikasta vastaa pakkaus _domain_. Pysyväistallennuksesta vastaa _database_ pakkaus, jota käytetään sqlite:llä paikalliseen tietokannan hallintaan. 
 
+## Käyttöliittymä
+
+Käyttöliittymästä vastaava luokka on [CalculatorUi] 
+
 ## Päätoiminnallisuudet
 
 Sovelluksen muutamia tärkeitä toiminnallisuuksia kuvattuna sekvenssikaavioina.
