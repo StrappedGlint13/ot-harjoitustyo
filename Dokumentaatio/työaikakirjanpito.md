@@ -11,4 +11,5 @@
 | 30.11	 | 2    | Kirjautumismetodien alustamista.
 | 3.12   | 9    | Testien tekoa, vaatimusmäärittelyn päivittämistä, toimivan jar-tiedoston luominen, tyylin tarkistus (checkstyleä varten)
 | 9.12   | 3    | Seurantanäkymän modausta, turhien tekstien siivousta ja JavaDoc aloitettu.
-Yhteensä |45	|
+| 10.12  | 7    | Lisää testejä, dokumentaation päivittämistä ja alustava arkkitehtuurikuvaus, JavaDoc kuntoon, tuotteiden lisäämiseen lisätty muutama toiminnallisuus.  
+Yhteensä |52	|

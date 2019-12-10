@@ -12,13 +12,14 @@ Aluksi sovellusta on tarkoitus käyttää pelkästään normaalin käyttäjän t
 
 ### Käyttöliittymäluonnos
 
-Sovelluksessa tulee olemaan 3 päänäkymää. Aluksi sovelluksessa avautuu kirjautumisnäkymä, josta voi siirtyä uuden käyttäjän luomisnäkymään tai, jos käyttäjä on jo olemassa, hän voi kirjautua suoraan opiskelija-alennussovelluslaskimeen. 
+Sovelluksessa tulee olemaan 3 päänäkymää ja kaksi virheilmoitusnäkymää. Aluksi sovelluksessa avautuu kirjautumisnäkymä, josta voi siirtyä uuden käyttäjän luomisnäkymään tai, jos käyttäjä on jo olemassa, hän voi kirjautua suoraan opiskelija-alennussovelluslaskimeen. 
 
 <img src="https://github.com/StrappedGlint13/ot-harjoitustyo/blob/master/Dokumentaatio/kuvat/Vaatimusm%C3%A4%C3%A4rittely.png" width="400">
 
 **Perusversion tarjoama toiminnallisuus**
 
 ### Kirjautumisnäkymä
+
 - Käyttäjä voi kirjautua laskimeen / tehty
   - Käyttäjä pääsee sisään laskimeen, mikäli käyttäjätunnus ja salasana löytyvät tietokannasta / tehty
 - Käyttäjä voi luoda uuden käyttäjätunnuksen / tehty
@@ -33,7 +34,9 @@ Sovelluksessa tulee olemaan 3 päänäkymää. Aluksi sovelluksessa avautuu kirj
   -Käyttäjä voi palata takaisin kirjautumisnäkymään / tehty 
 
 ###  Laskinnäkymä
-  - käyttäjä voi lisätä tuotteita seurantaan
+  - käyttäjä voi lisätä tuotteita laskimeen / tehty
+  - käyttäjä voi tallentaa tuotteita tietokantaan / tehty
+  - kirjautuessa laskimeen, käyttäjälle tulee lisätyt tuotteet näkyviin
   - Käyttäjä valitsee hakukentästä tuotteen, jolle on määritelty ominaisuudet tietokannassa.
   - käyttäjä näkee paljon hän on saanut opiskelija-alennusta rahamäärällisesti, ja prosentuaalisesti
   - käyttäjä näkee vain oman opiskelija-alennusseurantansa
