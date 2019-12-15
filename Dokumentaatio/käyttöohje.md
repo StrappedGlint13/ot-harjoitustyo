@@ -16,6 +16,6 @@ Kirjautuminen onnistuu, mikäli käyttäjätunnus ja salasana ovat oikein. Täm�
 
 ## Uuden käyttäjän luominen
 
-Kirjautumisnäkymästä pääsee luomaan uuden käyttäjän painamalla _create new user_ näppäintä. Tämän jälkeen käyttäjän tulee syöttää käyttäjänimi, sähköpostiosoite, opiskelijanumero ja salasana, niille annettujan ehtojen mukaisesti:
+Kirjautumisnäkymästä pääsee luomaan uuden käyttäjän painamalla _new user?_ näppäintä. Tämän jälkeen käyttäjän tulee syöttää käyttäjänimi, sähköpostiosoite, opiskelijanumero ja salasana, niille annettujan ehtojen mukaisesti:
 
 <img src="https://github.com/StrappedGlint13/ot-harjoitustyo/blob/master/Dokumentaatio/kuvat/RegisterationScene.png" width ="600">
