@@ -1,6 +1,7 @@
 package ui;
 
-import database.DBcoordinator;
+import database.ProductDao;
+import database.UserDao;
 import domain.DomainService;
 import domain.Product;
 import domain.User;
@@ -36,6 +37,10 @@ public class CalculatorUi extends Application {
     private Scene loginView;
     private Scene calculatorView;
     private Scene regView;
+    
+    private UserDao userDao = new UserDao("db");
+    private ProductDao productDao = new ProductDao("db");
+    private DomainService dService = new DomainService(userDao, productDao);
 
     public static final Font ITALIC_FONT
             = Font.font(
@@ -45,19 +50,21 @@ public class CalculatorUi extends Application {
 
     private ObservableList<Product> data
             = FXCollections.observableArrayList();
+    
+    @Override 
+    public void init() throws Exception {
+        userDao.setDatabase();
+    }
+
 
     public static void main(String[] args) {
         launch(args);
 
     }
-
+    
     @Override
 
     public void start(Stage window) throws Exception {
-        DBcoordinator dataBasecoordinator = new DBcoordinator("db");
-        dataBasecoordinator.setDatabase();
-        DomainService dService = new DomainService(dataBasecoordinator);
-
         HBox putUsername = new HBox(10);
         HBox putPassword = new HBox(10);
         Label title = new Label("Login SDC");
@@ -192,7 +199,7 @@ public class CalculatorUi extends Application {
                 errorMessage2.setText("Username is too short or too long.");
                 window.setScene(errorScene);
             } else {
-                dataBasecoordinator.createUser(testUser);
+                dService.createUser(testUser);
                 window.setScene(loginView);
             }
         });

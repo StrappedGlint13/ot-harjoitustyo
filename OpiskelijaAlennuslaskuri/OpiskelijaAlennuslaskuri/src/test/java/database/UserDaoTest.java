@@ -1,7 +1,7 @@
 package database;
 
 
-import database.DBcoordinator;
+
 import domain.DomainService;
 import domain.Product;
 import domain.User;
@@ -28,9 +28,9 @@ import static org.junit.Assert.*;
  *
  * @author matibrax
  */
-public class DBcoordinatorTest{
+public class UserDaoTest{
    
-    DBcoordinator testdb;
+    UserDao testdb;
     DomainService domainservice;
     
     @Before
@@ -38,46 +38,28 @@ public class DBcoordinatorTest{
 
         try {
             Connection connection = connect();
-            testdb = new DBcoordinator("test.db");
+            testdb = new UserDao("test.db");
             PreparedStatement setDatabase = connection.prepareStatement(
                     "CREATE TABLE IF NOT EXISTS Users(id INTEGER AUTO_INCREMENT PRIMARY KEY, userName VARCHAR(200), email VARCHAR(200), studentNumber VARHAR(200), passWord VARCHAR (200));");
             setDatabase.execute();
             setDatabase.close();
             connection.close();
         } catch (SQLException ex) {
-            Logger.getLogger(DBcoordinatorTest.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(UserDaoTest.class.getName()).log(Level.SEVERE, null, ex);
         }
         testdb.setDatabase();
-    }
-    
-    @After
-    public void tearDown() {
-        File file = new File(":memory:");
-        file.delete();
     }
     
     @Test
     public void createUserWorks() {
        User user = new User ("Jaska","jokunen@populus","10292","kaikkea");
-       testdb.createUser(user);
+       User test = new User ("","","","");
+       testdb.create(user);
        
-       user = testdb.findTheUser(user.getUserName(), user.getPassword());
+       test = testdb.findTheUser(user.getUserName(), user.getPassword());
+       assertEquals(test, user);
     }
     
-    @Test
-    public void createProductWorks() {
-       Product product = new Product("Jaska",0.0,0.0,0.0);
-       testdb.createProduct(product);
-    }
-    /*
-    @Test
-    public void returnProductsWorks() {
-       Product product = new Product("Jaska",0.0,0.0,0.0);
-       Product product2 = new Product("Something", 0.0, 0.0, 0.0);
-       ObservableList<Product> products = FXCollections.observableArrayList();
-       products.add(product);
-       products.add(product2);    
-    }
     //In progress
     /*
     @Test

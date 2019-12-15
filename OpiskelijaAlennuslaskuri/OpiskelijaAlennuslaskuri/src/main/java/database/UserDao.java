@@ -24,11 +24,11 @@ import javafx.collections.ObservableList;
  *
  */
 
-public class DBcoordinator {
+public class UserDao implements Dao<User, Integer> {
 
     private String dataBase;
 
-    public DBcoordinator(String dataBase) {
+    public UserDao(String dataBase) {
         
         this.dataBase = dataBase;
     }
@@ -68,8 +68,9 @@ public class DBcoordinator {
      * @param user käyttäjä
      * 
      */
-
-    public void createUser(User user) {
+    
+    @Override
+    public void create(User user) {
         Connection connection = connect();
 
         try {
@@ -84,9 +85,10 @@ public class DBcoordinator {
             newUser.executeUpdate();
             newUser.close();
         } catch (SQLException ex) {
-            Logger.getLogger(DBcoordinator.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(UserDao.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
     
     public void createProduct(Product product) {
         Connection connection = connect();
@@ -104,7 +106,7 @@ public class DBcoordinator {
             newProduct.close();
             
         } catch (SQLException ex) {
-            Logger.getLogger(DBcoordinator.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(UserDao.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
@@ -131,7 +133,7 @@ public class DBcoordinator {
             connection.close();
 
         } catch (SQLException ex) {
-            Logger.getLogger(DBcoordinator.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(UserDao.class.getName()).log(Level.SEVERE, null, ex);
         }
         return products;
     }
@@ -146,7 +148,8 @@ public class DBcoordinator {
         }
         return connection;
     }
-
+    
+    @Override
     public User findTheUser(String userName, String passWord) {
         String dbUsername = null;
         String dbpassWord = null;
@@ -172,7 +175,7 @@ public class DBcoordinator {
             connection.close();
             
         } catch (SQLException ex) {
-            Logger.getLogger(DBcoordinator.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(UserDao.class.getName()).log(Level.SEVERE, null, ex);
         }
         return searchUser;
     }

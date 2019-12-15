@@ -1,15 +1,23 @@
 package domain;
 
-import database.DBcoordinator;
+
+import database.ProductDao;
+import database.UserDao;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
+import ui.CalculatorUi;
 
 /**
  *
@@ -21,11 +29,12 @@ import javafx.scene.layout.VBox;
  */
 public class DomainService {
 
-    private DBcoordinator databaseCoordinator;
-    private User user;
+    private UserDao userDao;
+    private ProductDao productDao;
 
-    public DomainService(DBcoordinator databaseCoordinator) {
-        this.databaseCoordinator = databaseCoordinator;
+    public DomainService(UserDao userDao, ProductDao productDao) {
+        this.userDao = userDao;
+        this.productDao = productDao;
     }
 
     /**
@@ -38,7 +47,7 @@ public class DomainService {
      */
     
     public Boolean checkIfuserExist(String userName, String passWord) {
-        User user = databaseCoordinator.findTheUser(userName, passWord);
+        User user = userDao.findTheUser(userName, passWord);
 
         if (user.getUserName() == null || user.getPassword() == null) {
             return false;
@@ -48,8 +57,12 @@ public class DomainService {
     
     public ObservableList logIn (User user) {
         ObservableList<Product> userProducts;
-        userProducts = databaseCoordinator.returnProducts(user);
+        userProducts = userDao.returnProducts(user);
         return userProducts;
+    }
+    
+    public void createUser(User user) {
+        userDao.create(user);
     }
     
     /**
@@ -62,7 +75,7 @@ public class DomainService {
      */
 
     public User getUser(String userName, String passWord) {
-        User user = databaseCoordinator.findTheUser(userName, passWord);
+        User user = userDao.findTheUser(userName, passWord);
         return user;
     }
     
@@ -74,8 +87,14 @@ public class DomainService {
      */
 
     public void addProductDB(Product product) {
-        databaseCoordinator.createProduct(product);  
+        productDao.createProduct(product);  
     }
-    
+     /**
+     * 
+     *
+     * Alustaa tietokannan
+     *
+     * 
+     */
 
 }

@@ -1,7 +1,8 @@
 package domain;
 
 
-import database.DBcoordinator;
+import database.ProductDao;
+import database.UserDao;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -16,25 +17,27 @@ import static org.junit.Assert.*;
 public class DomainServiceTest {
    
     DomainService domainService;
-    DBcoordinator dbcoordinator = new DBcoordinator("test");
+    UserDao userDao = new UserDao("testUserDao");
+    ProductDao productDao = new ProductDao("testUserDao");
     User user;
    
     @Before
     public void setUp() {
-        domainService = new DomainService(dbcoordinator);
+        domainService = new DomainService(userDao, productDao);
         user = new User("","");
     }
     @Test
     public void constructorWorks() {
-        assertEquals(dbcoordinator, dbcoordinator);
+        assertEquals(userDao, userDao);
+        assertEquals(productDao, productDao);
     }
     @Test
     public void checkIfUserExistsWorkd() {
         boolean test = domainService.checkIfuserExist(user.getUserName(), user.getPassword());
         assertFalse("", test);
         
-        dbcoordinator.createUser(user);
-        user = dbcoordinator.findTheUser(user.getUserName(), user.getPassword());
+        userDao.create(user);
+        user = userDao.findTheUser(user.getUserName(), user.getPassword());
         test = domainService.checkIfuserExist(user.getUserName(), user.getPassword());
         assertEquals(test, test);
         
