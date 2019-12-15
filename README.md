@@ -14,6 +14,8 @@ Opiskelija-alennuslaskurin avulla käyttäjä voi seurata henkilökohtaista opis
 
 [Viikko5](https://github.com/StrappedGlint13/ot-harjoitustyo/releases/viikko5)
 
+[Viikko6](https://github.com/StrappedGlint13/ot-harjoitustyo/releases/tag/Viikko6)
+
 ## Komentorivitoiminnot 
 
 ### Ohjelman suorittaminen
