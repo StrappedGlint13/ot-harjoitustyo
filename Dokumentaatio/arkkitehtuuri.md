@@ -41,11 +41,11 @@ Sovelluksen loogisen datamallin muodostavat luokat User ja Product, jotka kuvaav
 - getUser(String userName, String passWord)
 - addProductDB(Product product) 
 
-_DomainService_ käsittelee myös käyttäjiä ja tuotteita pakkauksessa _database_ luokan _DBcoordinator_(https://github.com/StrappedGlint13/ot-harjoitustyo/blob/master/OpiskelijaAlennuslaskuri/OpiskelijaAlennuslaskuri/src/main/java/database/DBcoordinator.java) avulla.
+_DomainService_ käsittelee myös käyttäjiä ja tuotteita pakkauksessa _database_ luokan _ProductDao_(https://github.com/StrappedGlint13/ot-harjoitustyo/blob/master/OpiskelijaAlennuslaskuri/OpiskelijaAlennuslaskuri/src/main/java/database/ProductDao.java) ja _UserDao_(https://github.com/StrappedGlint13/ot-harjoitustyo/blob/master/OpiskelijaAlennuslaskuri/OpiskelijaAlennuslaskuri/src/main/java/database/UserDao.java)  avulla.
 
 Sovelluslogiikkaa ja muita ohjelman osia kuvaava luokka/pakkauskaavio:
 
-<img src="https://github.com/StrappedGlint13/ot-harjoitustyo/blob/master/Dokumentaatio/kuvat/Pakkauskaavio.png" widht="250">
+<img src="https://github.com/StrappedGlint13/ot-harjoitustyo/blob/master/Dokumentaatio/kuvat/Pakkauskaavio_02.png" widht="250">
  
 ## Päätoiminnallisuudet
 
@@ -55,8 +55,8 @@ Sovelluksen muutamia tärkeitä toiminnallisuuksia kuvattuna sekvenssikaavioina.
 
 Ohjelman käynnistyessä käyttäjän eteen ilmestyy sisäänkirjautumisnäkymä. Käyttäjän syöttää käyttäjätunnuksensa ja salasanansa niille tarkoitettuihin kenttiin. Tämän jälkeen hän painaa _loginButton_ -nappia, jonka jälkeen sovellus etenee seuraavasti:
 
-<img src="https://github.com/StrappedGlint13/ot-harjoitustyo/blob/master/Dokumentaatio/kuvat/Sekvenssikaavio%20 kirjautuminen.png" widht="250">
+<img src="https://github.com/StrappedGlint13/ot-harjoitustyo/blob/master/Dokumentaatio/kuvat/Sekvenssikaavio_%20kirjautuminen_02.jpg" widht="250">
 
-Tapahtumankäsittelijä kutsuu sovelluslogiikasta vastaavaa _domainService_-oliota, joka tarkistaa tietokannasta täsmääkö käyttäjänimi ja salasana luotuja tunnuksia. Tämän _domainService_-olio tekee kutsumalla oliometodilla _findTheUser_ tietokannasta vastaavaa _DBcoordinator_-oliota. Parametreina ovat käyttäjän syöttämät käyttäjätunnus ja salasana. Jos käyttäjä löytyy, palauttaa _DBcoordinator_ haetun käyttäjän _DomainService_-oliolle käsiteltäväksi. 
+Tapahtumankäsittelijä kutsuu sovelluslogiikasta vastaavaa _domainService_-oliota, joka tarkistaa tietokannasta täsmääkö käyttäjänimi ja salasana luotuja tunnuksia. Tämän _domainService_-olio tekee kutsumalla oliometodilla _findTheUser_ käyttäjien tietokantataulusta vastaavaa UserDao-oliota. Parametreina ovat käyttäjän syöttämät käyttäjätunnus ja salasana. Jos käyttäjä löytyy, palauttaa _UserDao_ haetun käyttäjän _DomainService_-oliolle käsiteltäväksi. 
 
 Sovelluslogiikan puolella _DomainService_ vielä tarkistaa, että käyttäjätunnukset vastaavat kirjautuvan käyttäjän tunnuksia metodeilla _getUserName()_ ja _getPassword()_. Tämän jälkeen kontrolli palaa takaisin käyttöliittymälle, jossa _Stage_-olio _window_ asettaa Opiskelija-alennuslaskurin näkymän, ja palauttaa käyttäjän tiedot tallennetuista alennustuotteista. 
