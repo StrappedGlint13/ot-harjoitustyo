@@ -60,3 +60,21 @@ Ohjelman käynnistyessä käyttäjän eteen ilmestyy sisäänkirjautumisnäkymä
 Tapahtumankäsittelijä kutsuu sovelluslogiikasta vastaavaa _domainService_-oliota, joka tarkistaa tietokannasta täsmääkö käyttäjänimi ja salasana luotuja tunnuksia. Tämän _domainService_-olio tekee kutsumalla oliometodilla _findTheUser_ tietokannasta vastaavaa _DBcoordinator_-oliota. Parametreina ovat käyttäjän syöttämät käyttäjätunnus ja salasana. Jos käyttäjä löytyy, palauttaa _DBcoordinator_ haetun käyttäjän _DomainService_-oliolle käsiteltäväksi. 
 
 Sovelluslogiikan puolella _DomainService_ vielä tarkistaa, että käyttäjätunnukset vastaavat kirjautuvan käyttäjän tunnuksia metodeilla _getUserName()_ ja _getPassword()_. Tämän jälkeen kontrolli palaa takaisin käyttöliittymälle, jossa _Stage_-olio _window_ asettaa Opiskelija-alennuslaskurin näkymän, ja palauttaa käyttäjän tiedot tallennetuista alennustuotteista. 
+
+## Tietojen pysyväistallennus
+
+Pakkaukessa _database_ olevat luokat _UserDao_ ja _ProductDao_ huolehtivat tietojen tallennuksesta tietokantaan. Luokan _DataBaseSetterin_ vastuulla on tietokannan alustaminen. 
+
+Luokat on luotu [Data Access Object](https://en.wikipedia.org/wiki/Data_access_object) mallilla. _DataBaseSetter_ luokan konstruktorille on annettu tietokannan nimi "db", joka tallentuu projektin juurikansioon. 
+
+### Tietokantataulut
+
+Käyttäjät ja tuotteet tallennetaan kahteen erilliseen tietokantatauluun:
+
+|Users||||
+|:---|:---|:---|:---|
+|(pk) studentNumber:integer|userName:Varchar(200)|passWord:Varchar(200)|email:Varchar(200)|
+|Products|||
+|:---|:---|:---|
+|(pk) id:Integer|(fk)stude-ntNumber_id:Integer|name:Varchar(200)|normalPrice:Double|studentPrice:Double|discountPercentage:Double| 
+

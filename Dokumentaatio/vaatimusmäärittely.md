@@ -50,6 +50,7 @@ Sovelluksessa tulee olemaan 3 päänäkymää ja kaksi virheilmoitusnäkymää. 
   - mahdollisuus kategorisoida ostettuja tuotteita
   - mahdollisuus yhdistää muiden käyttäjien kanssa 
   - tuotteiden tietojen lisäys ja mahdollisuus tarkastella niitä
+  - unohdetun salasanan/tunnuksen palauttaminen sähköpostiin
 
   
 
