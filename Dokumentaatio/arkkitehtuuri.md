@@ -75,6 +75,6 @@ Käyttäjät ja tuotteet tallennetaan kahteen erilliseen tietokantatauluun:
 |:---|:---|:---|:---|
 |(pk) studentNumber:integer|userName:Varchar(200)|passWord:Varchar(200)|email:Varchar(200)|
 
-|Products|||
-|:---|:---|:---|:---|
+|Products|||||
+|:---|:---|:---|:---|:---|
 |(pk) id:Integer|(fk)studentNumber_id:Integer|name:Varchar(200)|normalPrice:Double|studentPrice:Double|discountPercentage:Double| 
