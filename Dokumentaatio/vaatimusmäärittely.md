@@ -21,12 +21,12 @@ Sovelluksessa tulee olemaan 3 päänäkymää ja kaksi virheilmoitusnäkymää. 
 ### Kirjautumisnäkymä
 
 - Käyttäjä voi kirjautua laskimeen 
-  - Käyttäjä pääsee sisään laskimeen, mikäli käyttäjätunnus ja salasana löytyvät tietokannasta 
+- Käyttäjä pääsee sisään laskimeen, mikäli käyttäjätunnus ja salasana löytyvät tietokannasta 
 - Käyttäjä voi luoda uuden käyttäjätunnuksen 
 - Käyttäjälle tulee ilmoitus, mikäli käyttäjätunnus tai salasana on väärin 
 
 ### Rekisteröintinäkymä
--Käyttäjä luo uuden ja uniikin käyttäjätunnuksen
+  - käyttäjä luo uuden ja uniikin käyttäjätunnuksen
   - salasana ei saa sisältää ä, ö tai å:ta
   - opiskelijanumero tulee olla uniikki, ja 9 numeroa pitkä. 
   - käyttäjätunnus on vähintään 2 merkkiä pitkä 
