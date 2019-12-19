@@ -41,7 +41,7 @@ Sovelluksen loogisen datamallin muodostavat luokat User ja Product, jotka kuvaav
 - getUser(String userName, String passWord)
 - addProductDB(Product product) 
 
-_DomainService_ käsittelee myös käyttäjiä ja tuotteita pakkauksessa _database_ luokan _ProductDao_(https://github.com/StrappedGlint13/ot-harjoitustyo/blob/master/OpiskelijaAlennuslaskuri/OpiskelijaAlennuslaskuri/src/main/java/database/ProductDao.java) ja _UserDao_(https://github.com/StrappedGlint13/ot-harjoitustyo/blob/master/OpiskelijaAlennuslaskuri/OpiskelijaAlennuslaskuri/src/main/java/database/UserDao.java) avulla.
+_DomainService_ käsittelee myös käyttäjiä ja tuotteita pakkauksessa _database_ luokan [ProductDao](https://github.com/StrappedGlint13/ot-harjoitustyo/blob/master/OpiskelijaAlennuslaskuri/OpiskelijaAlennuslaskuri/src/main/java/database/ProductDao.java) ja [UserDao](https://github.com/StrappedGlint13/ot-harjoitustyo/blob/master/OpiskelijaAlennuslaskuri/OpiskelijaAlennuslaskuri/src/main/java/database/UserDao.java) avulla.
 
 Sovelluslogiikkaa ja muita ohjelman osia kuvaava luokka/pakkauskaavio:
 

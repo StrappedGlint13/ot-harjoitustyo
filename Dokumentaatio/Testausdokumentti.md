@@ -6,7 +6,7 @@ Ohjelmaa on testattu  yksikkötestein JUnitilla sekä manuaalisesti tapahtunein 
 
 ### sovelluslogiikka
 
-Automatisoitujen testeistä päävastuussa on pakkauksen _domain_ ja _database_ luokkia testaavat integraatiotesti DomainServiceTest(https://github.com/StrappedGlint13/ot-harjoitustyo/blob/master/OpiskelijaAlennuslaskuri/OpiskelijaAlennuslaskuri/src/test/java/domain/DomainServiceTest.java). Integraatiotesti _DomainServiceTest_ integroi testeihin  myös pakkauksessa _database_ olevia luokkia. Myös sovellusloogikan luokille User(https://github.com/StrappedGlint13/ot-harjoitustyo/blob/master/OpiskelijaAlennuslaskuri/OpiskelijaAlennuslaskuri/src/test/java/domain/UserTest.java) ja Product(https://github.com/mluukkai/OtmTodoApp/blob/master/dokumentaatio/testaus.md) on luotu yksikkötestejä.   
+Automatisoitujen testeistä päävastuussa on pakkauksen _domain_ ja _database_ luokkia testaavat integraatiotesti [DomainServiceTest](https://github.com/StrappedGlint13/ot-harjoitustyo/blob/master/OpiskelijaAlennuslaskuri/OpiskelijaAlennuslaskuri/src/test/java/domain/DomainServiceTest.java). Integraatiotesti _DomainServiceTest_ integroi testeihin  myös pakkauksessa _database_ olevia luokkia. Myös sovellusloogikan luokille [User](https://github.com/StrappedGlint13/ot-harjoitustyo/blob/master/OpiskelijaAlennuslaskuri/OpiskelijaAlennuslaskuri/src/test/java/domain/UserTest.java) ja [Product](https://github.com/mluukkai/OtmTodoApp/blob/master/dokumentaatio/testaus.md) on luotu yksikkötestejä.   
 
 ### Testauskattavuus
 
