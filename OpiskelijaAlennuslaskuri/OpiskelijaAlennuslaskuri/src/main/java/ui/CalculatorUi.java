@@ -1,10 +1,10 @@
 package ui;
 
-import database.ProductDao;
-import database.UserDao;
+import static com.sun.xml.internal.fastinfoset.alphabet.BuiltInRestrictedAlphabets.table;
 import domain.DomainService;
 import domain.Product;
 import domain.User;
+import java.text.DecimalFormat;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -38,9 +38,14 @@ public class CalculatorUi extends Application {
     private Scene calculatorView;
     private Scene regView;
     
-    private UserDao userDao = new UserDao("db");
-    private ProductDao productDao = new ProductDao("db");
-    private DomainService dService = new DomainService(userDao, productDao);
+    private int loggedUser;
+    private double normalPrice;
+    private double studentPrice;
+    private double average;
+    
+    private ObservableList<Product> data = FXCollections.observableArrayList();
+
+    private DomainService dService = new DomainService("db");
 
     public static final Font ITALIC_FONT
             = Font.font(
@@ -48,20 +53,11 @@ public class CalculatorUi extends Application {
                     FontPosture.ITALIC,
                     Font.getDefault().getSize());
 
-    private ObservableList<Product> data
-            = FXCollections.observableArrayList();
-    
-    @Override 
-    public void init() throws Exception {
-        userDao.setDatabase();
-    }
-
-
     public static void main(String[] args) {
         launch(args);
 
     }
-    
+
     @Override
 
     public void start(Stage window) throws Exception {
@@ -117,17 +113,126 @@ public class CalculatorUi extends Application {
         errorPane1.setCenter(errorBox1);
         Scene errorScene1 = new Scene(errorPane1, 300, 100);
 
+        // CalculatorView
+        BorderPane calculatorPane = new BorderPane();
+
+        HBox topCalPanel = new HBox(850);
+        Button logoutButton = new Button("Logout");
+        logoutButton.setFont(ITALIC_FONT);
+        logoutButton.setOnAction(e -> {
+            window.setScene(loginView);
+        });
+        topCalPanel.setAlignment(Pos.BOTTOM_RIGHT);
+        topCalPanel.getChildren().addAll(logoutButton);
+        calculatorPane.setTop(topCalPanel);
+
+        TableView tableView = new TableView();
+
+        TableColumn<String, Product> column1 = new TableColumn<>("Product name");
+        column1.setCellValueFactory(new PropertyValueFactory<>("name"));
+        TableColumn<String, Product> column2 = new TableColumn<>("Normal price");
+        column2.setCellValueFactory(new PropertyValueFactory<>("normalPrice"));
+        TableColumn<String, Product> column3 = new TableColumn<>("Student price");
+        column3.setCellValueFactory(new PropertyValueFactory<>("studentPrice"));
+        TableColumn<String, Product> column4 = new TableColumn<>("Discount percentage");
+        column4.setCellValueFactory(new PropertyValueFactory<>("discountPercentage"));
+        tableView.getColumns().addAll(column1, column2, column3, column4);
+
+        TableViewSelectionModel selectionModel = tableView.getSelectionModel();
+        tableView.setPlaceholder(new Label("You have not made any purchases"));
+        tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        tableView.setPrefWidth(600);
+        tableView.setPrefHeight(500);
+        selectionModel.setSelectionMode(SelectionMode.MULTIPLE);
+
+        //adding the product to the tracker
+        HBox addingBox = new HBox(40);
+        addingBox.setPadding(new Insets(30, 30, 30, 30));
+
+        final TextField addProductName = new TextField();
+        addProductName.setPromptText("Name");
+        addProductName.setMaxWidth(column1.getPrefWidth());
+        final TextField addNormalPrice = new TextField();
+        addNormalPrice.setMaxWidth(column2.getPrefWidth());
+        addNormalPrice.setPromptText("Normal €");
+        final TextField addStudentPrice = new TextField();
+        addStudentPrice.setMaxWidth(column3.getPrefWidth());
+        addStudentPrice.setPromptText("Student €");
+        
+        DecimalFormat df = new DecimalFormat("#.##");
+        VBox total = new VBox(10);
+        total.setSpacing(20);
+        VBox calculationsBox = new VBox(10);
+        Label totalNormalPrice = new Label();
+        Label totalStudentPrice = new Label();
+        Label averageDiscountpercentage = new Label();
+        totalNormalPrice.setFont(Font.font("Verdana", FontWeight.BOLD, 15));
+        totalStudentPrice.setFont(Font.font("Verdana", FontWeight.BOLD, 15));
+        averageDiscountpercentage.setFont(Font.font("Verdana", FontWeight.BOLD, 15));
+        
+        calculationsBox.getChildren().addAll(totalNormalPrice, totalStudentPrice, averageDiscountpercentage);        
+        total.getChildren().addAll(calculationsBox);
+
         loginButton.setOnAction(e -> {
             String checkUsername = usernameField.getText();
             String checkPassword = passwordField.getText();
-
             if (dService.checkIfuserExist(checkUsername, checkPassword) == true) {
+                data = FXCollections.observableArrayList(dService.logIn(checkUsername, checkPassword));
+                loggedUser = dService.getStudentNumber(checkUsername, checkPassword); 
+                normalPrice = dService.getTotalNormal(loggedUser);
+                totalNormalPrice.setText("Total normal price: " + Double.toString(normalPrice));
+                studentPrice = dService.getTotalStudent(loggedUser);
+                totalStudentPrice.setText("Total Student price: " + Double.toString(studentPrice));
+                average = dService.getAverage(normalPrice, studentPrice);
+                averageDiscountpercentage.setText("Average discount percentage: " + df.format(average));
+                tableView.setItems(data);
                 window.setScene(calculatorView);
             } else {
                 window.setScene(errorScene1);
             }
 
         });
+        
+        final Button addStudentProduct = new Button("Add");
+        addStudentProduct.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent e) {
+                double addNP = 0.0;
+                addNP = Double.parseDouble(addNormalPrice.getText());
+                double addSP = 0.0;
+                addSP = Double.parseDouble(addStudentPrice.getText());
+                double addDP = dService.getAverage(addNP, addSP);
+                df.format(addNP);
+                df.format(addSP);
+                df.format(addDP);
+                data.add(new Product(
+                        loggedUser,
+                        addProductName.getText(),
+                        addNP,
+                        addSP,
+                        addDP
+                ));
+
+                dService.addProductDB(data.get(data.size() - 1));
+                addProductName.clear();
+                addNormalPrice.clear();
+                addStudentPrice.clear();
+          
+                normalPrice = dService.getTotalNormal(loggedUser);
+                totalNormalPrice.setText("Total normal price: " + Double.toString(normalPrice));
+                studentPrice = dService.getTotalStudent(loggedUser);
+                totalStudentPrice.setText("Total Student price:" + Double.toString(studentPrice));
+                average = dService.getAverage(normalPrice, studentPrice);
+                averageDiscountpercentage.setText("Average discount percentage: " + df.format(average));
+               ;
+            }
+        });
+
+        addingBox.getChildren().addAll(addProductName, addNormalPrice, addStudentPrice, addStudentProduct, total);
+        addingBox.setSpacing(20);
+
+        VBox tableViewBox = new VBox(tableView, addingBox);
+        calculatorPane.setCenter(tableViewBox);
 
         regButton.setOnAction(e -> {
             window.setScene(regView);
@@ -179,113 +284,34 @@ public class CalculatorUi extends Application {
         });
 
         errorBox2.getChildren().addAll(errorMessage2, backToCreation);
-        errorPane2.setTop(errorBox2);
-        Scene errorScene = new Scene(errorPane2, 200, 200);
+        errorPane2.setCenter(errorBox2);
+        Scene errorScene = new Scene(errorPane2, 600, 300);
 
         addUserButton.setOnAction(e -> {
-            String checkUsername = newUser.getText();
-            String checkPassword = newPassword.getText();
+            String userName = newUser.getText();
+            String passWord = newPassword.getText();
             String checkEmail = newEmail.getText();
-            String checkStudentNumber = newStudentnumber.getText();
-            User testUser = new User(checkUsername, checkPassword, checkEmail, checkStudentNumber);
+            int checkStudentNumber = Integer.parseInt(newStudentnumber.getText());
+            User testUser = new User(checkStudentNumber, userName, passWord, checkEmail);
 
-            if (checkUsername.isEmpty() || checkPassword.isEmpty() || checkEmail.isEmpty() || checkStudentNumber.isEmpty()) {
+            if (userName.isEmpty() || passWord.isEmpty() || checkEmail.isEmpty()) {
                 errorMessage2.setText("Fill all the fields!");
                 window.setScene(errorScene);
-            } else if (checkPassword.contains("ä") || checkPassword.contains("å") || checkPassword.contains("ö")) {
+            } else if (passWord.contains("ä") || passWord.contains("å") || passWord.contains("ö")) {
                 errorMessage2.setText("Password does not meet requirements");
                 window.setScene(errorScene);
-            } else if (checkUsername.length() < 2 || checkUsername.length() > 15) {
+            } else if (userName.length() < 2 || userName.length() > 15) {
                 errorMessage2.setText("Username is too short or too long.");
+                window.setScene(errorScene);
+            } else if (dService.iSunique(checkStudentNumber) == false) {
+                errorMessage2.setText("There is already user \n with this student number."
+                        + " Insert your student number again \n or contact administrator");
                 window.setScene(errorScene);
             } else {
                 dService.createUser(testUser);
                 window.setScene(loginView);
             }
         });
-
-        // CalculatorView
-        BorderPane calculatorPane = new BorderPane();
-
-        HBox topCalPanel = new HBox(850);
-        Button logoutButton = new Button("Logout");
-        logoutButton.setFont(ITALIC_FONT);
-        logoutButton.setOnAction(e -> {
-            window.setScene(loginView);
-        });
-        topCalPanel.setAlignment(Pos.BOTTOM_RIGHT);
-        topCalPanel.getChildren().addAll(logoutButton);
-        calculatorPane.setTop(topCalPanel);
-
-        TableView tableView = new TableView();
-
-        TableColumn<String, Product> column1 = new TableColumn<>("Product name");
-        column1.setCellValueFactory(new PropertyValueFactory<>("name"));
-        TableColumn<String, Product> column2 = new TableColumn<>("Normal price");
-        column2.setCellValueFactory(new PropertyValueFactory<>("normalPrice"));
-        TableColumn<String, Product> column3 = new TableColumn<>("Student price");
-        column3.setCellValueFactory(new PropertyValueFactory<>("studentPrice"));
-        TableColumn<String, Product> column4 = new TableColumn<>("Discount percentage");
-        column4.setCellValueFactory(new PropertyValueFactory<>("discountPercentage"));
-        tableView.getColumns().addAll(column1, column2, column3, column4);
-
-        TableViewSelectionModel selectionModel = tableView.getSelectionModel();
-        tableView.setPlaceholder(new Label("You have not made any purchases"));
-        tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
-        tableView.setPrefWidth(600);
-        tableView.setPrefHeight(500);
-        selectionModel.setSelectionMode(SelectionMode.MULTIPLE);
-
-        //adding the product to the tracker
-        HBox addingBox = new HBox();
-
-        final TextField addProductName = new TextField();
-        addProductName.setPromptText("Product name");
-        addProductName.setMaxWidth(column1.getPrefWidth());
-        final TextField addNormalPrice = new TextField();
-        addNormalPrice.setMaxWidth(column2.getPrefWidth());
-        addNormalPrice.setPromptText("Normal price");
-        final TextField addStudentPrice = new TextField();
-        addStudentPrice.setMaxWidth(column3.getPrefWidth());
-        addStudentPrice.setPromptText("Student price");
-        final TextField addDiscoutedPercentage = new TextField();
-        addDiscoutedPercentage.setMaxWidth(column3.getPrefWidth());
-        addDiscoutedPercentage.setPromptText("Discounted percentage");
-
-        tableView.setItems(data);
-
-        final Button addStudentProduct = new Button("Add");
-        addStudentProduct.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent e) {
-                double addNP = 0.0;
-                addNP = Double.parseDouble(addNormalPrice.getText());
-                double addSP = 0.0;
-                addSP = Double.parseDouble(addStudentPrice.getText());
-                double addDP = 0.0;
-                addDP = Double.parseDouble(addDiscoutedPercentage.getText());
-
-                data.add(new Product(
-                        addProductName.getText(),
-                        addNP,
-                        addSP,
-                        addDP
-                ));
-
-                dService.addProductDB(data.get(data.size() - 1));
-                addProductName.clear();
-                addNormalPrice.clear();
-                addStudentPrice.clear();
-                addDiscoutedPercentage.clear();
-            }
-        });
-
-        addingBox.getChildren().addAll(addProductName, addNormalPrice, addStudentPrice, addDiscoutedPercentage, addStudentProduct);
-        addingBox.setSpacing(3);
-
-        VBox tableViewBox = new VBox(tableView, addingBox);
-
-        calculatorPane.setCenter(tableViewBox);
 
         //Scenes
         calculatorView = new Scene(calculatorPane, 1000, 600);

@@ -1,6 +1,7 @@
 package domain;
 
 
+import database.DataBaseSetter;
 import database.ProductDao;
 import database.UserDao;
 import java.sql.Connection;
@@ -31,10 +32,15 @@ public class DomainService {
 
     private UserDao userDao;
     private ProductDao productDao;
+    private DataBaseSetter dbSetter;
 
-    public DomainService(UserDao userDao, ProductDao productDao) {
-        this.userDao = userDao;
-        this.productDao = productDao;
+
+    public DomainService(String database) {
+        this.userDao = new UserDao(database);
+        this.productDao = new ProductDao( database);
+        this.dbSetter = new DataBaseSetter();
+        
+        dbSetter.setDatabase(database);
     }
 
     /**
@@ -55,10 +61,11 @@ public class DomainService {
         return true;
     }
     
-    public ObservableList logIn (User user) {
-        ObservableList<Product> userProducts;
-        userProducts = userDao.returnProducts(user);
-        return userProducts;
+    public List logIn (String userName, String passWord) {
+        List<Product> usersProducts = new ArrayList();
+        User user = userDao.findTheUser(userName, passWord);
+        usersProducts = productDao.returnProducts(user);
+        return usersProducts;
     }
     
     public void createUser(User user) {
@@ -74,8 +81,8 @@ public class DomainService {
      * @return palautaa käyttäjän, mikäli käyttäjä löytyy
      */
 
-    public User getUser(String userName, String passWord) {
-        User user = userDao.findTheUser(userName, passWord);
+    public User getUser(int studentNumber) {
+        User user = userDao.read(studentNumber);
         return user;
     }
     
@@ -87,14 +94,53 @@ public class DomainService {
      */
 
     public void addProductDB(Product product) {
-        productDao.createProduct(product);  
+        productDao.create(product);  
     }
-     /**
+    
+    /**
+     * Tarkistaa tietokannasta onko opiskelijanumero uniikki. 
+     *
+     * @param studentNumber opiskelijanumero
      * 
-     *
-     * Alustaa tietokannan
-     *
+     * @return true, jos käyttäjää samalla opiskelijanumerolla ei löydy, muuten false
      * 
      */
+    
+    public boolean iSunique(int studentNumber) {
+        User user = null;
+        user = userDao.read(studentNumber);
+        
+        if (user != null) {
+            return false;
+        }
+        return true;
+    }
+    
+    public int getStudentNumber(String username, String password) {
+        User user = new User(0,"","","");
+        user = userDao.findTheUser(username, password);
+        int studentNumber = user.getStudentNumber();
+        return studentNumber;
+    }
+    
+    public double getTotalNormal(int studentNumber) {
+        double normalPrice = 0.0;
+
+        normalPrice = productDao.getNormalPrice(studentNumber);
+        
+       return normalPrice;
+    } 
+    
+    public double getTotalStudent(int studentNumber) {
+        double studentPrice = 0.0;
+        studentPrice = productDao.getStudentPrice(studentNumber);
+        return studentPrice;
+    } 
+    
+    public double getAverage(double full, double part) {
+        double average = 1 - part/full; 
+        return average;
+    }        
+
 
 }

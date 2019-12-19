@@ -10,11 +10,11 @@ import static org.junit.Assert.*;
 
 public class UserTest {
     
-    User jaakko = new User("Jaakko", "jaakko@helsinki.fi", "123456", "password");
+    User jaakko = new User(123456, "jaakko@helsinki.fi", "something", "password");
     
     @Test
     public void addingSameUser() {
-        User jaakko = new User("Jaakko", "jaakko@helsinki.fi","123456", "password");
+        User jaakko = new User(123456, "jaakko@helsinki.fi","something", "password");
         assertTrue(jaakko.equals(this.jaakko));
     }
     @Test
@@ -34,8 +34,8 @@ public class UserTest {
     }
     @Test
     public void getStudentNumberTest() {
-        String studentnumber = jaakko.getStudentNumber();
-        assertTrue(jaakko.getStudentNumber().equals(studentnumber));
+        int studentnumber = jaakko.getStudentNumber();
+        assertTrue(jaakko.getStudentNumber() == studentnumber);
     }
    
 }

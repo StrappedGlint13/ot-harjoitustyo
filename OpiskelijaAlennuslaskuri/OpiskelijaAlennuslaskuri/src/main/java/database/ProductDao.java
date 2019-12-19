@@ -12,6 +12,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
@@ -22,7 +24,7 @@ import ui.CalculatorUi;
  *
  * @author matibrax
  */
-public class ProductDao {
+public class ProductDao implements Dao<Product, Integer> {
     
     private String dataBase;
 
@@ -30,17 +32,20 @@ public class ProductDao {
         
         this.dataBase = dataBase;
     }
-    public void createProduct(Product product) {
+    
+    @Override
+    public void create(Product product) {
         Connection connection = connect();
 
         try {
-            PreparedStatement newProduct = connection.prepareStatement("INSERT INTO Products(name, normalPrice, studentPrice, discountPercentage)"
-                    + " VALUES (?, ?, ?, ?);");
-
-            newProduct.setString(1, product.getName());
-            newProduct.setDouble(2, product.getNormalPrice());
-            newProduct.setDouble(3, product.getStudentPrice());
-            newProduct.setDouble(4, product.getDiscountPercentage());
+            PreparedStatement newProduct = connection.prepareStatement("INSERT INTO Products(studentNumber_id, name, normalPrice, studentPrice, discountPercentage)"
+                    + " VALUES (?, ?, ?, ?, ?);");
+            
+            newProduct.setInt(1, product.getStudentNumberID());
+            newProduct.setString(2, product.getName());
+            newProduct.setDouble(3, product.getNormalPrice());
+            newProduct.setDouble(4, product.getStudentPrice());
+            newProduct.setDouble(5, product.getDiscountPercentage());
 
             newProduct.executeUpdate();
             newProduct.close();
@@ -50,16 +55,17 @@ public class ProductDao {
         }
     }
     
-   
-    public ObservableList<Product> returnProducts(User user) {
-        ObservableList<Product> products = FXCollections.observableArrayList(); 
+  
+    public List<Product> returnProducts(User user) {
+        List<Product> products = new ArrayList(); 
         Connection connection = connect();
         try {
-            PreparedStatement getProducts = connection.prepareStatement("SELECT * FROM Products;");
+            PreparedStatement getProducts = connection.prepareStatement("SELECT * FROM Products WHERE studentNumber_id = ?;");
+            getProducts.setInt(1, user.getStudentNumber());
             ResultSet resultSet = getProducts.executeQuery();
-            Product product = new Product("", 0.0, 0.0, 0.0);
 
             while (resultSet.next()) {
+                Product product = new Product(user.getStudentNumber(),"", 0.0, 0.0, 0.0);
                 product.setName(resultSet.getString("name"));
                 product.setNormalPrice(resultSet.getDouble("normalPrice"));
                 product.setStudentPrice(resultSet.getDouble("studentPrice"));
@@ -87,24 +93,76 @@ public class ProductDao {
         }
         return connection;
     }
-    public void setDatabase() {
+    
+
+    @Override
+    public Product read(Integer key) {
         try {
             Connection connection = connect();
-            PreparedStatement setDatabase = connection.prepareStatement(
-                    "CREATE TABLE IF NOT EXISTS Users(id INTEGER AUTO_INCREMENT PRIMARY KEY, userName VARCHAR(200), email VARCHAR(200), studentNumber VARHAR(200), passWord VARCHAR (200));");
-            setDatabase.execute();
-            setDatabase.close();
+            PreparedStatement readUser = connection.prepareStatement("SELECT * FROM Products WHERE studentNumber = ?;");
+            readUser.setInt(1, key);
+            ResultSet rs = readUser.executeQuery();
 
-            PreparedStatement setDatabase1 = connection.prepareStatement(
-                    "CREATE TABLE IF NOT EXISTS Products(id INTEGER AUTO_INCREMENT PRIMARY KEY, name VARCHAR(200), normalPrice DOUBLE, studentPrice DOUBLE, discountPercentage DOUBLE);");
-            setDatabase1.execute();
-            setDatabase1.close();
-            
+            if (!rs.next()) {
+                return null;
+            }
+
+            Product product = new Product(rs.getInt("studentNumber_id"), rs.getString("name"), rs.getDouble("normalPrice"), rs.getDouble("studentPrice"),
+            rs.getDouble("discountPercentage"));
+
+            readUser.close();
+            rs.close();
+            connection.close();
+
+            return product;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+    public double getNormalPrice(Integer key) { 
+        Connection connection = connect();
+        double totalNormal = 0.0;
+
+        try {
+            PreparedStatement getProducts = connection.prepareStatement("SELECT normalPrice FROM Products WHERE studentNumber_id = ?;");
+            getProducts.setInt(1, key);
+            ResultSet resultSet = getProducts.executeQuery();
+
+            while (resultSet.next()) {
+                totalNormal = totalNormal + resultSet.getDouble("normalPrice");
+            }
+            getProducts.close();
+            resultSet.close();
             connection.close();
 
         } catch (SQLException ex) {
-            Logger.getLogger(CalculatorUi.class
-                    .getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ProductDao.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return totalNormal;
     }
+    public double getStudentPrice(Integer key) { 
+        Connection connection = connect();
+        double studentPrice = 0.0;
+
+        try {
+            PreparedStatement getProducts = connection.prepareStatement("SELECT studentPrice FROM Products WHERE studentNumber_id = ?;");
+            getProducts.setInt(1, key);
+            ResultSet resultSet = getProducts.executeQuery();
+
+            while (resultSet.next()) {
+                studentPrice = studentPrice + resultSet.getDouble("studentPrice");
+            }
+            getProducts.close();
+            resultSet.close();
+            connection.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return studentPrice;
+    }
+
 }

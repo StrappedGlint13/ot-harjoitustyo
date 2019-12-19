@@ -22,7 +22,7 @@ public class ProductTest {
   
     @Before
     public void setUp() {
-        product = new Product("Coffee", 1.8, 1.2, 0.25);
+        product = new Product(1, "Coffee", 1.8, 1.2, 0.25);
     }
     
     @Test
@@ -44,4 +44,35 @@ public class ProductTest {
         double price = 1.2;
         assertTrue(product.getStudentPrice() == price);
     }
+    @Test
+    public void setStudentPriceWorks() {
+        double price = 1.2;
+        product.setStudentPrice(price);
+        assertTrue(product.getStudentPrice() == price);
+    }
+    @Test
+    public void setNormalPriceWorks() {
+        double price = 1.2;
+        product.setNormalPrice(price);
+        assertTrue(product.getNormalPrice()== price);
+    }
+    @Test
+    public void setDiscountPercentageWorks() {
+        double discountPercentage = 1.2;
+        product.setDiscountPercentage(discountPercentage);
+        assertTrue(product.getDiscountPercentage()== discountPercentage);
+    }
+    @Test
+    public void setNameWorks() {
+        product.setName("Jaakko");
+        assertTrue(product.getName()== "Jaakko");
+    }
+    @Test
+    public void setStudentNumberIDWorks() {
+        int studentNUmber = 11;
+        product.setStudentNumberID(studentNUmber);
+        assertTrue(product.getStudentNumberID()== 11);
+    }
+    
+    
 }

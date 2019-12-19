@@ -5,6 +5,8 @@
  */
 package database;
 
+import java.util.List;
+
 /**
  *
  * @author matibrax
@@ -13,6 +15,6 @@ public interface Dao<T, K> {
     
     void create(T object) throws Exception;
     
-    T findTheUser(String u, String p);
+    T read(K key) throws Exception;
 
 }
