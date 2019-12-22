@@ -12,6 +12,8 @@ Automatisoitujen testeistä päävastuussa on pakkauksen _domain_ ja _database_ 
 
 Sovelluksen testauksen rivikattavuus on 87% ja haarautumakattavuus 76%. Käyttöliittymäkerros ei ole mukana testauksessa.
 
+<img src="https://github.com/StrappedGlint13/ot-harjoitustyo/blob/master/Dokumentaatio/kuvat/testaus.png" width="800">
+
 ## Järjestelmätestaus
 
 Sovelluksen järjestelmätestaus on suoritettu manuaalisesti.
