@@ -22,8 +22,6 @@ Sovelluksen järjestelmätestaus on suoritettu manuaalisesti.
 
 Sovellus on haettu ja sitä on testattu [käyttöohjeen](https://github.com/mluukkai/OtmTodoApp/blob/master/dokumentaatio/kayttoohje.md) kuvaamalla tavalla sekä OSX- että Linux-ympäristöön siten, että sovelluksen käynnistyshakemistossa on ollut käyttöohjeen kuvauksen mukainen _config.properties_-tiedosto.
 
-Sovellusta on testattu sekä tilanteissa, joissa käyttäjät ja työt tallettavat tiedostot ovat olleet olemassa ja joissa niitä ei ole ollut jolloin ohjelma on luonut ne itse.
-
 ### Toiminnallisuudet
 
 Kaikki [määrittelydokumentin](https://github.com/mluukkai/OtmTodoApp/blob/master/dokumentaatio/vaatimusmaarittely.md#perusversion-tarjoama-toiminnallisuus) ja käyttöohjeen listaamat toiminnallisuudet on käyty läpi. Kaikkien toiminnallisuuksien yhteydessä on syötekentät yritetty täyttää myös virheellisillä arvoilla kuten tyhjillä.
@@ -31,5 +29,6 @@ Kaikki [määrittelydokumentin](https://github.com/mluukkai/OtmTodoApp/blob/mast
 ## Sovellukseen jääneet laatuongelmat
 
 Sovellus ei anna tällä hetkellä järkeviä virheilmoituksia, seuraavissa tilanteissa
-- Kun käyttäjä luo uutta käyttäjää ja hän jättää opiskelijanumeron tyhjäksi tai syöttää opiskelijanumero kenttään kirjaimia. 
+- Kun käyttäjä luo uutta käyttäjää ja hän jättää opiskelijanumeron tyhjäksi tai syöttää opiskelijanumero-kenttään kirjaimia.
+- Jos käyttäjä syöttää laskin- tai rekisteröintinäkymässä tekstiä numeroita vaativiin kenttiin, syntyy stack tracea. 
 
