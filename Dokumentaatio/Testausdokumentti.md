@@ -10,7 +10,7 @@ Automatisoitujen testeistä päävastuussa on pakkauksen _domain_ ja _database_ 
 
 ### Testauskattavuus
 
-
+Sovelluksen testauksen rivikattavuus on 87% ja haarautumakattavuus 76%. Käyttöliittymäkerros ei ole mukana testauksessa.
 
 ## Järjestelmätestaus
 
