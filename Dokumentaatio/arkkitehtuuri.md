@@ -46,30 +46,12 @@ _DomainService_ käsittelee myös käyttäjiä ja tuotteita pakkauksessa _databa
 Sovelluslogiikkaa ja muita ohjelman osia kuvaava luokka/pakkauskaavio:
 
 <img src="https://github.com/StrappedGlint13/ot-harjoitustyo/blob/master/Dokumentaatio/kuvat/Pakkauskaavio_02.png" widht="250">
- 
-## Päätoiminnallisuudet
-
-Sovelluksen muutamia tärkeitä toiminnallisuuksia kuvattuna sekvenssikaavioina.
-
-### Käyttäjän kirjautuminen 
-
-Ohjelman käynnistyessä käyttäjän eteen ilmestyy sisäänkirjautumisnäkymä. Käyttäjän syöttää käyttäjätunnuksensa ja salasanansa niille tarkoitettuihin kenttiin. Tämän jälkeen hän painaa _loginButton_ -nappia, jonka jälkeen sovellus etenee seuraavasti:
-
-<img src="https://github.com/StrappedGlint13/ot-harjoitustyo/blob/master/Dokumentaatio/kuvat/Sekvenssikaavio_%20kirjautuminen_02.jpg" widht="250">
-
-Tapahtumankäsittelijä kutsuu sovelluslogiikasta vastaavaa _domainService_-oliota, joka tarkistaa tietokannasta täsmääkö käyttäjänimi ja salasana luotuja tunnuksia. Tämän _domainService_-olio tekee kutsumalla oliometodilla _findTheUser_ käyttäjien tietokantataulusta vastaavaa UserDao-oliota. Parametreina ovat käyttäjän syöttämät käyttäjätunnus ja salasana. Jos käyttäjä löytyy, palauttaa _UserDao_ haetun käyttäjän _DomainService_-oliolle käsiteltäväksi. 
-
-Sovelluslogiikan puolella _DomainService_ vielä tarkistaa, että käyttäjätunnukset vastaavat kirjautuvan käyttäjän tunnuksia metodeilla _getUserName()_ ja _getPassword()_. Tämän jälkeen kontrolli palaa takaisin käyttöliittymälle, jossa _Stage_-olio _window_ asettaa Opiskelija-alennuslaskurin näkymän, ja palauttaa käyttäjän tiedot tallennetuista alennustuotteista. 
 
 ## Tietojen pysyväistallennus
 
 Pakkaukessa _database_ olevat luokat _UserDao_ ja _ProductDao_ huolehtivat tietojen tallennuksesta tietokantaan. Luokan _DataBaseSetterin_ vastuulla on tietokannan alustaminen. 
 
 Luokat on luotu [Data Access Object](https://en.wikipedia.org/wiki/Data_access_object) mallilla. _DataBaseSetter_ luokan konstruktorille on annettu tietokannan nimi "db", joka tallentuu projektin juurikansioon. 
-
-Pakkaukessa _database_ olevat luokat _UserDao_ ja _ProductDao_ huolehtivat tietojen tallennuksesta tietokantaan. Luokan _DataBaseSetterin_ vastuulla on tietokannan alustaminen.
-
-Luokat on luotu [Data Access Object](https://en.wikipedia.org/wiki/Data_access_object) mallilla. _DataBaseSetter_ luokan konstruktorille on annettu tietokannan nimi "db", joka tallentuu projektin juurikansioon.
 
 ### Tietokantataulut
 
@@ -83,3 +65,18 @@ Käyttäjät ja tuotteet tallennetaan kahteen erilliseen tietokantatauluun:
 |:---|:---|:---|:---|:---|
 |(pk) id:Integer|(fk)studentNumber_id:Integer|name:Varchar(200)|normalPrice:Double|studentPrice:Double|discountPercentage:Double|
 
+Tietokanta sisältää käyttäjän tiedot, joita tarvitaan tuotteiden hallintaan. 
+
+## Päätoiminnallisuudet
+
+Sovelluksen muutamia tärkeitä toiminnallisuuksia kuvattuna sekvenssikaavioina.
+
+### Käyttäjän kirjautuminen 
+
+Ohjelman käynnistyessä käyttäjän eteen ilmestyy sisäänkirjautumisnäkymä. Käyttäjän syöttää käyttäjätunnuksensa ja salasanansa niille tarkoitettuihin kenttiin. Tämän jälkeen hän painaa _loginButton_ -nappia, jonka jälkeen sovellus etenee seuraavasti:
+
+<img src="https://github.com/StrappedGlint13/ot-harjoitustyo/blob/master/Dokumentaatio/kuvat/Sekvenssikaavio_%20kirjautuminen_02.jpg" widht="250">
+
+Tapahtumankäsittelijä kutsuu sovelluslogiikasta vastaavaa _domainService_-oliota, joka tarkistaa tietokannasta täsmääkö käyttäjänimi ja salasana luotuja tunnuksia. Tämän _domainService_-olio tekee kutsumalla oliometodilla _findTheUser_ käyttäjien tietokantataulusta vastaavaa UserDao-oliota. Parametreina ovat käyttäjän syöttämät käyttäjätunnus ja salasana. Jos käyttäjä löytyy, palauttaa _UserDao_ haetun käyttäjän _DomainService_-oliolle käsiteltäväksi. 
+
+Sovelluslogiikan puolella _DomainService_ vielä tarkistaa, että käyttäjätunnukset vastaavat kirjautuvan käyttäjän tunnuksia metodeilla _getUserName()_ ja _getPassword()_. Tämän jälkeen kontrolli palaa takaisin käyttöliittymälle, jossa _Stage_-olio _window_ asettaa Opiskelija-alennuslaskurin näkymän, ja palauttaa käyttäjän tiedot tallennetuista alennustuotteista. 
