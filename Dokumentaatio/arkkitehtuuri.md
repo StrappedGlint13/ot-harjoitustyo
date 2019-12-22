@@ -93,8 +93,8 @@ Sisäänkirjautumisnäkymästä voi siirtyä luomaan uuden käyttäjän painamal
 
 ### Käyttöliittymä
 
-Graafisessa käyttöliittymän rakenne on määritelty metodin _start_ alle. Esimerkiksi näkymät oltaisiin voitu eritellä omiksi olioikseen, niin koodista olisi tullut selkeämpää. 
+Graafisessa käyttöliittymän rakenne on määritelty metodin _start_ alle. Esimerkiksi näkymät oltaisiin voitu eritellä omiksi olioikseen, niin koodista olisi tullut selkeämpää. Käyttöliittymän rakennuksessa olisi voinut myös hyödyntää FXML-määrittelyä.   
 
 ### Database
 
-Tietokannan käsittelystä vastaavassa paketissa _database_ on suhttellisen paljon toisteista koodia. Dao-rajapintojen käyttö jäi myös turhan vähäiselle tasolle. 
+Tietokannan käsittelystä vastaavassa paketissa _database_ on suhteellisen paljon toisteista koodia. Dao-rajapintojen käyttö jäi myös turhan vähäiselle tasolle. 
