@@ -14,7 +14,5 @@ import java.util.List;
 public interface Dao<T, K> {
     
     void create(T object) throws Exception;
-    
-    T read(K key) throws Exception;
-
+   
 }

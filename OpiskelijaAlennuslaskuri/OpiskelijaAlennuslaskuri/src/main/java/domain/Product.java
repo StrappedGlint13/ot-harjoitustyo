@@ -27,12 +27,6 @@ public class Product {
     }
 
     @Override
-    public int hashCode() {
-        int hash = 7;
-        return hash;
-    }
-
-    @Override
     public boolean equals(Object obj) {
         if (this == obj) {
             return true;
@@ -100,10 +94,5 @@ public class Product {
 
     public void setStudentPrice(double studentPrice) {
         this.studentPrice = studentPrice;
-    }
-    @Override
-    public String toString() {
-        return this.name + ", " + this.normalPrice + ", " + this.studentPrice + ", " + this.discountPercentage;
-    }
-    
+    } 
 }

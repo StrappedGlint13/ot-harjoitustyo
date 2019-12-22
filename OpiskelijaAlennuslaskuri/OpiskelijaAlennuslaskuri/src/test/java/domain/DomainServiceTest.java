@@ -36,6 +36,10 @@ public class DomainServiceTest {
         testDservice.checkIfuserExist(user.getUserName(), user.getPassword());
         User testUser = new User(1, "jaska", "passu", "email");
         assertEquals(testUser, user);
+        
+        User testUser2 = new User(2, "not", "not", "not");
+        assertNotEquals(testUser2, user);
+        
 
     }
     
@@ -77,28 +81,20 @@ public class DomainServiceTest {
  
         assertEquals(Double.hashCode(totalAmount), Double.hashCode(realAmount));
     }
-    @Test
-    public void getAverageWorks() {
-        List<Product> testList = new ArrayList();
-        testList = testDservice.logIn(user.getUserName(), user.getPassword());
-        double totalStudent = 0.0;
-        double totalNormal = 0.0;
-        for (int i = 0; i < testList.size(); i++) {
-            totalStudent += testList.get(0).getStudentPrice();
-            totalNormal += testList.get(0).getNormalPrice();
-        }
-        double average = 1-totalStudent/totalNormal;
-        double methodAverage = testDservice.getAverage(totalNormal, totalStudent);
-        
-        assertEquals(Double.hashCode(average), Double.hashCode(methodAverage));
-    }
+    
     @Test
     public void iSuniqueWorks() {
         User user = new User(1, "jaska", "passu", "email");
         assertFalse(testDservice.iSunique(1));
-        assertTrue(testDservice.iSunique(66));
+        assertTrue(testDservice.iSunique(66));  
+    }
+    @Test
+    public void getStudentNumberWorks() {
+        int studentNumber = 1;
+        int dbStudentNumber = 0;
+        dbStudentNumber = testDservice.getStudentNumber(user.userName, user.password);
         
-  
+        assertEquals(studentNumber, dbStudentNumber);
     }
     
 }

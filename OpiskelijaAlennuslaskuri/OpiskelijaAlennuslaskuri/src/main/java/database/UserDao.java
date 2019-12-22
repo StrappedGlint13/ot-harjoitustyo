@@ -38,6 +38,7 @@ public class UserDao implements Dao<User, Integer> {
      * @param user käyttäjä
      *
      */
+    
     @Override
     public void create(User user) {
         Connection connection = connect();
@@ -57,13 +58,21 @@ public class UserDao implements Dao<User, Integer> {
             Logger.getLogger(UserDao.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    
+      /**
+     * Hakee käyttäjän tietokannasta
+     *
+     * @param userName käyttäjätunnus
+     * @param passWord salasana
+     *
+     * @return User
+     */
+    
     public User findTheUser(String userName, String passWord) {
         int dbStudentNumber = 0;
         String dbUsername = null;
         String dbPassword = null;
         String dbEmail = null;
-
         User searchUser = new User(dbStudentNumber, dbUsername, dbPassword, dbEmail);
 
         try {
@@ -94,8 +103,15 @@ public class UserDao implements Dao<User, Integer> {
         }
         return searchUser;
     }
-
-    @Override
+    
+     /**
+     * Hakee käyttäjän tietokannasta
+     *
+     * @param key avain
+     *
+     * @return User
+     */
+    
     public User read(Integer key) {
         try {
             Connection connection = connect();
@@ -120,6 +136,13 @@ public class UserDao implements Dao<User, Integer> {
         }
         return null;
     }
+    
+     /**
+     * Luo yhteyden tietokantaan
+     *
+     *
+     * @return connection
+     */
 
     private Connection connect() {
         Connection connection = null;

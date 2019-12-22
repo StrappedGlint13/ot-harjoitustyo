@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package domain;
 
 import org.junit.After;
@@ -72,6 +68,16 @@ public class ProductTest {
         int studentNUmber = 11;
         product.setStudentNumberID(studentNUmber);
         assertTrue(product.getStudentNumberID()== 11);
+    }
+    @Test
+    public void nonEqualsProducts() {
+        Product test1 = new Product(123456789, "", 0, 0, 0);
+        assertFalse(test1.equals(product));
+    }
+    @Test 
+    public void pricesDifferent() {
+        Product test1 = new Product(1, "Coffee", 2.0, 1.2, 0.25);
+        assertFalse(test1.equals(product));
     }
     
     

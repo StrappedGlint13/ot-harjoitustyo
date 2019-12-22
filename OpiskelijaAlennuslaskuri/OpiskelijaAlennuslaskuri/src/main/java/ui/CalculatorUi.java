@@ -1,6 +1,6 @@
 package ui;
 
-import static com.sun.xml.internal.fastinfoset.alphabet.BuiltInRestrictedAlphabets.table;
+
 import domain.DomainService;
 import domain.Product;
 import domain.User;
@@ -37,12 +37,12 @@ public class CalculatorUi extends Application {
     private Scene loginView;
     private Scene calculatorView;
     private Scene regView;
-    
+
     private int loggedUser;
     private double normalPrice;
     private double studentPrice;
     private double average;
-    
+
     private ObservableList<Product> data = FXCollections.observableArrayList();
 
     private DomainService dService = new DomainService("db");
@@ -70,6 +70,9 @@ public class CalculatorUi extends Application {
         TextField usernameField = new TextField();
         Label password = new Label("Password");
         PasswordField passwordField = new PasswordField();
+        
+        usernameText.setFont(Font.font("Verdana", FontWeight.BOLD, 15));
+        password.setFont(Font.font("Verdana", FontWeight.BOLD, 15));
 
         usernameText.setFont(ITALIC_FONT);
         title.setFont(ITALIC_FONT);
@@ -87,6 +90,7 @@ public class CalculatorUi extends Application {
         regButton.setText("New user?");
 
         GridPane loginLayout = new GridPane();
+        loginLayout.setStyle("-fx-background-color: linear-gradient(#E4EAA2, #9CD672)");
         loginLayout.setAlignment(Pos.CENTER);
         loginLayout.setVgap(10);
         loginLayout.setHgap(10);
@@ -101,6 +105,7 @@ public class CalculatorUi extends Application {
         Label errorMessage1 = new Label("User does not exists or password is wrong");
         errorMessage1.setTextFill(Color.RED);
         BorderPane errorPane1 = new BorderPane();
+        errorPane1.setStyle("-fx-background-color:POWDERBLUE");
         VBox errorBox1 = new VBox(20);
         errorBox1.setPadding(new Insets(9, 9, 9, 5));
         Button backToLogin = new Button("OK");
@@ -115,7 +120,9 @@ public class CalculatorUi extends Application {
 
         // CalculatorView
         BorderPane calculatorPane = new BorderPane();
-
+        Label loggedInUser = new Label();
+        loggedInUser.setFont(ITALIC_FONT);
+        loggedInUser.setFont(Font.font("Verdana", FontWeight.BOLD, 15));
         HBox topCalPanel = new HBox(850);
         Button logoutButton = new Button("Logout");
         logoutButton.setFont(ITALIC_FONT);
@@ -123,7 +130,7 @@ public class CalculatorUi extends Application {
             window.setScene(loginView);
         });
         topCalPanel.setAlignment(Pos.BOTTOM_RIGHT);
-        topCalPanel.getChildren().addAll(logoutButton);
+        topCalPanel.getChildren().addAll(loggedInUser, logoutButton);
         calculatorPane.setTop(topCalPanel);
 
         TableView tableView = new TableView();
@@ -137,6 +144,8 @@ public class CalculatorUi extends Application {
         TableColumn<String, Product> column4 = new TableColumn<>("Discount percentage");
         column4.setCellValueFactory(new PropertyValueFactory<>("discountPercentage"));
         tableView.getColumns().addAll(column1, column2, column3, column4);
+        
+        tableView.setStyle("-fx-background-color:POWDERBLUE");
 
         TableViewSelectionModel selectionModel = tableView.getSelectionModel();
         tableView.setPlaceholder(new Label("You have not made any purchases"));
@@ -158,7 +167,7 @@ public class CalculatorUi extends Application {
         final TextField addStudentPrice = new TextField();
         addStudentPrice.setMaxWidth(column3.getPrefWidth());
         addStudentPrice.setPromptText("Student €");
-        
+
         DecimalFormat df = new DecimalFormat("#.##");
         VBox total = new VBox(10);
         total.setSpacing(20);
@@ -169,8 +178,8 @@ public class CalculatorUi extends Application {
         totalNormalPrice.setFont(Font.font("Verdana", FontWeight.BOLD, 15));
         totalStudentPrice.setFont(Font.font("Verdana", FontWeight.BOLD, 15));
         averageDiscountpercentage.setFont(Font.font("Verdana", FontWeight.BOLD, 15));
-        
-        calculationsBox.getChildren().addAll(totalNormalPrice, totalStudentPrice, averageDiscountpercentage);        
+
+        calculationsBox.getChildren().addAll(totalNormalPrice, totalStudentPrice, averageDiscountpercentage);
         total.getChildren().addAll(calculationsBox);
 
         loginButton.setOnAction(e -> {
@@ -178,13 +187,14 @@ public class CalculatorUi extends Application {
             String checkPassword = passwordField.getText();
             if (dService.checkIfuserExist(checkUsername, checkPassword) == true) {
                 data = FXCollections.observableArrayList(dService.logIn(checkUsername, checkPassword));
-                loggedUser = dService.getStudentNumber(checkUsername, checkPassword); 
+                loggedUser = dService.getStudentNumber(checkUsername, checkPassword);
+                loggedInUser.setText(checkUsername);
                 normalPrice = dService.getTotalNormal(loggedUser);
-                totalNormalPrice.setText("Total normal price: " + Double.toString(normalPrice));
+                totalNormalPrice.setText("Total sum of paid normal priced products: " + Double.toString(normalPrice) + " €");
                 studentPrice = dService.getTotalStudent(loggedUser);
-                totalStudentPrice.setText("Total Student price: " + Double.toString(studentPrice));
+                totalStudentPrice.setText("Total sum of paid student discounted products: " + Double.toString(studentPrice) + " €");
                 average = dService.getAverage(normalPrice, studentPrice);
-                averageDiscountpercentage.setText("Average discount percentage: " + df.format(average));
+                averageDiscountpercentage.setText("Average student discount percentage: " + df.format(average) + " %");
                 tableView.setItems(data);
                 window.setScene(calculatorView);
             } else {
@@ -192,7 +202,7 @@ public class CalculatorUi extends Application {
             }
 
         });
-        
+
         final Button addStudentProduct = new Button("Add");
         addStudentProduct.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -217,14 +227,14 @@ public class CalculatorUi extends Application {
                 addProductName.clear();
                 addNormalPrice.clear();
                 addStudentPrice.clear();
-          
+
                 normalPrice = dService.getTotalNormal(loggedUser);
-                totalNormalPrice.setText("Total normal price: " + Double.toString(normalPrice));
+                totalNormalPrice.setText("Total sum of paid normal priced products: " + Double.toString(normalPrice) + " €");
                 studentPrice = dService.getTotalStudent(loggedUser);
-                totalStudentPrice.setText("Total Student price:" + Double.toString(studentPrice));
+                totalStudentPrice.setText("Total sum of paid student discounted products: " + Double.toString(studentPrice) + " €");
                 average = dService.getAverage(normalPrice, studentPrice);
-                averageDiscountpercentage.setText("Average discount percentage: " + df.format(average));
-               ;
+                averageDiscountpercentage.setText("Average student discount percentage: " + df.format(average) + " %");
+                ;
             }
         });
 
@@ -232,6 +242,7 @@ public class CalculatorUi extends Application {
         addingBox.setSpacing(20);
 
         VBox tableViewBox = new VBox(tableView, addingBox);
+        calculatorPane.setStyle("-fx-background-color: linear-gradient(#E4EAA2, #9CD672)");
         calculatorPane.setCenter(tableViewBox);
 
         regButton.setOnAction(e -> {
@@ -240,6 +251,7 @@ public class CalculatorUi extends Application {
 
         // newUserLayout
         BorderPane newUserLayout = new BorderPane();
+        newUserLayout.setStyle("-fx-background-color: linear-gradient(#E4EAA2, #9CD672)");
         VBox regLabels = new VBox(10);
         VBox regTextFields = new VBox(10);
         regLabels.setPadding(new Insets(9, 9, 9, 5));
@@ -250,6 +262,11 @@ public class CalculatorUi extends Application {
         Label studentNumber = new Label("Insert student number\n");
         Label setPassword = new Label("Set password\n *Don't use scandinavian\n characters(ä,ö,å)");
 
+        setUsername.setFont(ITALIC_FONT);
+        email.setFont(ITALIC_FONT);
+        studentNumber.setFont(ITALIC_FONT);
+        setPassword.setFont(ITALIC_FONT);
+        
         TextField newUser = new TextField();
         TextField newPassword = new TextField();
         TextField newEmail = new TextField();
@@ -260,6 +277,9 @@ public class CalculatorUi extends Application {
 
         Button addUserButton = new Button("Create new user");
         Button backButton = new Button("Back");
+        
+        addUserButton.setFont(ITALIC_FONT);
+        backButton.setFont(ITALIC_FONT);
 
         backButton.setOnAction(e -> {
             window.setScene(loginView);
@@ -277,7 +297,10 @@ public class CalculatorUi extends Application {
         errorMessage2.setTextFill(Color.RED);
         BorderPane errorPane2 = new BorderPane();
         VBox errorBox2 = new VBox(20);
+        errorBox2.setPadding(new Insets(40, 20, 20, 20));
         Button backToCreation = new Button("OK");
+        
+        errorPane2.setStyle("-fx-background-color:POWDERBLUE");
 
         backToCreation.setOnAction(e -> {
             window.setScene(regView);
@@ -285,16 +308,17 @@ public class CalculatorUi extends Application {
 
         errorBox2.getChildren().addAll(errorMessage2, backToCreation);
         errorPane2.setCenter(errorBox2);
-        Scene errorScene = new Scene(errorPane2, 600, 300);
+        Scene errorScene = new Scene(errorPane2, 300, 200);
 
         addUserButton.setOnAction(e -> {
             String userName = newUser.getText();
             String passWord = newPassword.getText();
             String checkEmail = newEmail.getText();
+            int studentNumberLength = newStudentnumber.getText().length();
             int checkStudentNumber = Integer.parseInt(newStudentnumber.getText());
             User testUser = new User(checkStudentNumber, userName, passWord, checkEmail);
 
-            if (userName.isEmpty() || passWord.isEmpty() || checkEmail.isEmpty()) {
+            if (userName.isEmpty() || passWord.isEmpty() || checkEmail.isEmpty() || studentNumberLength == 0) {
                 errorMessage2.setText("Fill all the fields!");
                 window.setScene(errorScene);
             } else if (passWord.contains("ä") || passWord.contains("å") || passWord.contains("ö")) {
@@ -304,8 +328,14 @@ public class CalculatorUi extends Application {
                 errorMessage2.setText("Username is too short or too long.");
                 window.setScene(errorScene);
             } else if (dService.iSunique(checkStudentNumber) == false) {
-                errorMessage2.setText("There is already user \n with this student number."
-                        + " Insert your student number again \n or contact administrator");
+                errorMessage2.setText("There is already user\n\nwith this student number.\n\n"
+                        + " Insert your student number again \n\n or contact administrator");
+                window.setScene(errorScene);
+            } else if (studentNumberLength != 9) {
+                errorMessage2.setText("Student number is invalid.\n\n"
+                        + "Insert valid student number\n\n"
+                        + "Student number should contains 9 numbers\n\n"
+                        + "Example: 014681075");
                 window.setScene(errorScene);
             } else {
                 dService.createUser(testUser);
@@ -314,9 +344,9 @@ public class CalculatorUi extends Application {
         });
 
         //Scenes
-        calculatorView = new Scene(calculatorPane, 1000, 600);
+        calculatorView = new Scene(calculatorPane, 1000, 500);
         regView = new Scene(newUserLayout, 400, 300);
-        loginView = new Scene(loginLayout, 300, 300);
+        loginView = new Scene(loginLayout, 400, 400);
         window.setScene(loginView);
         window.show();
     }

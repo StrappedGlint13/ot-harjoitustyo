@@ -52,6 +52,14 @@ public class DataBaseSetter {
                     .getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    /**
+     * Luo yhteyden tietokantaan
+     *
+     *
+     * @return connection
+     */
+    
     private Connection connect(String database) {
         Connection connection = null;
         try {

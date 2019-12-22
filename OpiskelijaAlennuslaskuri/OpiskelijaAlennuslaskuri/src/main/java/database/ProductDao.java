@@ -33,6 +33,13 @@ public class ProductDao implements Dao<Product, Integer> {
         this.dataBase = dataBase;
     }
     
+    /**
+     * Luo uuden tuotteen tietokantaan
+     *
+     * @param product product
+     *
+     */
+    
     @Override
     public void create(Product product) {
         Connection connection = connect();
@@ -55,17 +62,26 @@ public class ProductDao implements Dao<Product, Integer> {
         }
     }
     
-  
+
+     /**
+     * Palauttaa parametrina annetun käyttäjän tuotteet tietokannasta
+     *
+     * @param user käyttäjä
+     *
+     * @return List<Product>
+     */
+    
     public List<Product> returnProducts(User user) {
         List<Product> products = new ArrayList(); 
         Connection connection = connect();
+        
         try {
             PreparedStatement getProducts = connection.prepareStatement("SELECT * FROM Products WHERE studentNumber_id = ?;");
             getProducts.setInt(1, user.getStudentNumber());
             ResultSet resultSet = getProducts.executeQuery();
-
             while (resultSet.next()) {
-                Product product = new Product(user.getStudentNumber(),"", 0.0, 0.0, 0.0);
+                
+                Product product = new Product(user.getStudentNumber(),"lol", 0.0, 0.0, 0.0);
                 product.setName(resultSet.getString("name"));
                 product.setNormalPrice(resultSet.getDouble("normalPrice"));
                 product.setStudentPrice(resultSet.getDouble("studentPrice"));
@@ -73,16 +89,23 @@ public class ProductDao implements Dao<Product, Integer> {
                 products.add(product);
 
             }
-
             getProducts.close();
             resultSet.close();
             connection.close();
-
+            
         } catch (SQLException ex) {
             Logger.getLogger(ProductDao.class.getName()).log(Level.SEVERE, null, ex);
         }
         return products;
     }
+    
+     /**
+     * Luo yhteyden tietokantaan
+     *
+     *
+     * @return connection
+     */
+    
     private Connection connect() {
         Connection connection = null;
         try {
@@ -94,34 +117,15 @@ public class ProductDao implements Dao<Product, Integer> {
         return connection;
     }
     
-
-    @Override
-    public Product read(Integer key) {
-        try {
-            Connection connection = connect();
-            PreparedStatement readUser = connection.prepareStatement("SELECT * FROM Products WHERE studentNumber = ?;");
-            readUser.setInt(1, key);
-            ResultSet rs = readUser.executeQuery();
-
-            if (!rs.next()) {
-                return null;
-            }
-
-            Product product = new Product(rs.getInt("studentNumber_id"), rs.getString("name"), rs.getDouble("normalPrice"), rs.getDouble("studentPrice"),
-            rs.getDouble("discountPercentage"));
-
-            readUser.close();
-            rs.close();
-            connection.close();
-
-            return product;
-
-        } catch (SQLException ex) {
-            Logger.getLogger(UserDao.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return null;
-    }
-
+     /**
+     * Hakee käyttäjän normaalihintaiset tuotteet 
+     *
+     * @param key avain
+     *
+     * @return totalNormal
+     */
+    
+  
     public double getNormalPrice(Integer key) { 
         Connection connection = connect();
         double totalNormal = 0.0;
@@ -143,6 +147,14 @@ public class ProductDao implements Dao<Product, Integer> {
         }
         return totalNormal;
     }
+    
+      /**
+     * Hakee käyttäjän opiskelija-alennettujen tuotteiden  
+     *
+     * @param key avain
+     *
+     * @return studentPrice
+     */
     public double getStudentPrice(Integer key) { 
         Connection connection = connect();
         double studentPrice = 0.0;
