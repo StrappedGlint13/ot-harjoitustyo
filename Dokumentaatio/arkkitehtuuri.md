@@ -63,15 +63,13 @@ Sovelluslogiikan puolella _DomainService_ vielä tarkistaa, että käyttäjätun
 
 ## Tietojen pysyväistallennus
 
-<<<<<<< HEAD
 Pakkaukessa _database_ olevat luokat _UserDao_ ja _ProductDao_ huolehtivat tietojen tallennuksesta tietokantaan. Luokan _DataBaseSetterin_ vastuulla on tietokannan alustaminen. 
 
 Luokat on luotu [Data Access Object](https://en.wikipedia.org/wiki/Data_access_object) mallilla. _DataBaseSetter_ luokan konstruktorille on annettu tietokannan nimi "db", joka tallentuu projektin juurikansioon. 
-=======
+
 Pakkaukessa _database_ olevat luokat _UserDao_ ja _ProductDao_ huolehtivat tietojen tallennuksesta tietokantaan. Luokan _DataBaseSetterin_ vastuulla on tietokannan alustaminen.
 
 Luokat on luotu [Data Access Object](https://en.wikipedia.org/wiki/Data_access_object) mallilla. _DataBaseSetter_ luokan konstruktorille on annettu tietokannan nimi "db", joka tallentuu projektin juurikansioon.
->>>>>>> a80848150b9d75d8b45254aacd7a6ed6622f9695
 
 ### Tietokantataulut
 
@@ -80,14 +78,8 @@ Käyttäjät ja tuotteet tallennetaan kahteen erilliseen tietokantatauluun:
 |Users||||
 |:---|:---|:---|:---|
 |(pk) studentNumber:integer|userName:Varchar(200)|passWord:Varchar(200)|email:Varchar(200)|
-<<<<<<< HEAD
-|Products|||
-|:---|:---|:---|
-|(pk) id:Integer|(fk)stude-ntNumber_id:Integer|name:Varchar(200)|normalPrice:Double|studentPrice:Double|discountPercentage:Double| 
-
-=======
 
 |Products|||||
 |:---|:---|:---|:---|:---|
-|(pk) id:Integer|(fk)studentNumber_id:Integer|name:Varchar(200)|normalPrice:Double|studentPrice:Double|discountPercentage:Double| 
->>>>>>> a80848150b9d75d8b45254aacd7a6ed6622f9695
+|(pk) id:Integer|(fk)studentNumber_id:Integer|name:Varchar(200)|normalPrice:Double|studentPrice:Double|discountPercentage:Double|
+

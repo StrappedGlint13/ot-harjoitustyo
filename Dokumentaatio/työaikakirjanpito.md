@@ -17,4 +17,5 @@
 | 17.12  | 2    | Korjattu koodia niin, että nyt jokainen käyttäjä voi kirjautua ja nähdä omat tietokantaan tallentamansa tuotteet.
 | 18.12  | 5    | Luotu UI:hin laskuriominaisuudet, sekä tarvittavat metodit sovelluslogiikan ja tietokannanhallinnan puolelle.
 | 19.12  | 8    | Korjattu testit testaamaan virheellistä koodia ja toimiviksi. Nostettu rivikattavuus hyvälle tasolle ja lisätty dokumentaatiota. 
-Yhteensä | 79	|
+| 22.12  | 5    | Viimeistelyä ja siistimistä
+Yhteensä | 84	|
