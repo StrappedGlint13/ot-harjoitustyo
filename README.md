@@ -12,11 +12,15 @@ Opiskelija-alennuslaskurin avulla käyttäjä voi seurata henkilökohtaista opis
 
 [käyttöohje](https://github.com/StrappedGlint13/ot-harjoitustyo/blob/master/Dokumentaatio/k%C3%A4ytt%C3%B6ohje.md)
 
+[testausdokumentti](https://github.com/StrappedGlint13/ot-harjoitustyo/blob/master/Dokumentaatio/Testausdokumentti.md)
+
 ## Releaset
 
 [Viikko5](https://github.com/StrappedGlint13/ot-harjoitustyo/releases/viikko5)
 
 [Viikko6](https://github.com/StrappedGlint13/ot-harjoitustyo/releases/tag/Viikko6)
+
+[Loppupalautus](https://github.com/StrappedGlint13/ot-harjoitustyo/releases/tag/Loppupalautus)
 
 ## Komentorivitoiminnot 
 

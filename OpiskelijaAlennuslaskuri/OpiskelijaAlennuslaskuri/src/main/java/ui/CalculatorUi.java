@@ -308,7 +308,7 @@ public class CalculatorUi extends Application {
 
         errorBox2.getChildren().addAll(errorMessage2, backToCreation);
         errorPane2.setCenter(errorBox2);
-        Scene errorScene = new Scene(errorPane2, 300, 200);
+        Scene errorScene = new Scene(errorPane2, 400, 300);
 
         addUserButton.setOnAction(e -> {
             String userName = newUser.getText();

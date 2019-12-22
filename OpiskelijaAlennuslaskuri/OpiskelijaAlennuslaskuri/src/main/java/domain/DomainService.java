@@ -174,5 +174,4 @@ public class DomainService {
         average = average * 100;
         return average;
     }
-
 }
