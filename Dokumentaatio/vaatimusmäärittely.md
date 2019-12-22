@@ -45,12 +45,14 @@ Sovelluksessa tulee olemaan 3 päänäkymää ja kaksi virheilmoitusnäkymää. 
 ###  Jatkokehitysidoeita
   
 **Perusversion jälkeen mahdollisia toteutettavia toiminnallisuuksia**
+  - tietokantataulu opiskelija-alennetuille tuotteille ja laaja tiedonkeruu
   - hakukentän luominen tuotteiden lisäämisen helpottamista varten 
   - erilaisten filttereiden luominen
   - mahdollisuus kategorisoida ostettuja tuotteita
   - mahdollisuus yhdistää muiden käyttäjien kanssa 
   - tuotteiden tietojen lisäys ja mahdollisuus tarkastella niitä
   - unohdetun salasanan/tunnuksen palauttaminen sähköpostiin
+  - mahdollisuus poistaa tuotteita, ja editoida jo lisättyjä tuotteita 
 
   
 

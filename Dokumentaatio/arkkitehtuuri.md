@@ -80,3 +80,11 @@ Ohjelman käynnistyessä käyttäjän eteen ilmestyy sisäänkirjautumisnäkymä
 Tapahtumankäsittelijä kutsuu sovelluslogiikasta vastaavaa _domainService_-oliota, joka tarkistaa tietokannasta täsmääkö käyttäjänimi ja salasana luotuja tunnuksia. Tämän _domainService_-olio tekee kutsumalla oliometodilla _findTheUser_ käyttäjien tietokantataulusta vastaavaa UserDao-oliota. Parametreina ovat käyttäjän syöttämät käyttäjätunnus ja salasana. Jos käyttäjä löytyy, palauttaa _UserDao_ haetun käyttäjän _DomainService_-oliolle käsiteltäväksi. 
 
 Sovelluslogiikan puolella _DomainService_ vielä tarkistaa, että käyttäjätunnukset vastaavat kirjautuvan käyttäjän tunnuksia metodeilla _getUserName()_ ja _getPassword()_. Tämän jälkeen kontrolli palaa takaisin käyttöliittymälle, jossa _Stage_-olio _window_ asettaa Opiskelija-alennuslaskurin näkymän, ja palauttaa käyttäjän tiedot tallennetuista alennustuotteista. 
+
+### Uuden käyttäjän lisääminen 
+
+Sisäänkirjautumisnäkymästä voi siirtyä luomaan uuden käyttäjän painamalla painiketta _new user?_. Tämän jälkeen kontrolli etenee seuraavasti:
+
+<img src="https://github.com/StrappedGlint13/ot-harjoitustyo/blob/master/Dokumentaatio/kuvat/Sekvenssikaavio:%20uusi%20k%C3%A4ytt%C3%A4j%C3%A4.png" width="600">
+
+[Tapahtumankäsittelijä](https://github.com/StrappedGlint13/ot-harjoitustyo/blob/master/OpiskelijaAlennuslaskuri/OpiskelijaAlennuslaskuri/src/main/java/ui/CalculatorUi.java#L313) käsittelee käyttäjän syöttämiä tietoja ensin käyttöliittymän sisäisten ehtolauseiden kautta. Sovelluslogiikka hyödyntää metodia [iSunique](https://github.com/StrappedGlint13/ot-harjoitustyo/blob/master/OpiskelijaAlennuslaskuri/OpiskelijaAlennuslaskuri/src/main/java/ui/CalculatorUi.java#L330) uniikin opiskelijanumeron tarkistuksessa. _UserDao_ tarkistaa tietokantataulusta tämän ja palauttaa totuusarvon sovelluslogiikalle. Mikäli uusi käyttäjätunnus täyttää kaikki ehdot, sovelluslogiikka luo uuden käyttäjän tietokantaan kutsumalla _userDaon_ metodia [create](https://github.com/StrappedGlint13/ot-harjoitustyo/blob/master/OpiskelijaAlennuslaskuri/OpiskelijaAlennuslaskuri/src/main/java/domain/DomainService.java#L82). Tämän jälkeen tapahtumankäsittelijä vaihtaa näkymäksi takaisin kirjautumisnäkymän. 
