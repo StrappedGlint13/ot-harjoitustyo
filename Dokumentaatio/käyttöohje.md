@@ -12,7 +12,7 @@ Sovellus käynnistyy kirjautumisnäkymään:
 
 <img src="https://github.com/StrappedGlint13/ot-harjoitustyo/blob/master/Dokumentaatio/kuvat/login.png" width="600">
 
-Kirjautuminen onnistuu, mikäli käyttäjätunnus ja salasana ovat oikein. Tämän jälkeen laskimeen kirjaudutaan painamalla [login]{: .btn } painiketta. 
+Kirjautuminen onnistuu, mikäli käyttäjätunnus ja salasana ovat oikein. Tämän jälkeen laskimeen kirjaudutaan painamalla [login](){: .btn } painiketta. 
 
 ## Uuden käyttäjän luominen
 
